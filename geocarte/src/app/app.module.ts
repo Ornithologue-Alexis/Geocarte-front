@@ -9,6 +9,8 @@ import { NgbdModalBasic } from './components/ngbd-modal-basic/ngbd-modal-basic.c
 
 import { AgmCoreModule } from '@agm/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {MatSidenavModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
+    MatSidenavModule,
+    BrowserAnimationsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCAZKYezUJLxkFdkaH1pxNqJeAX8OV5Ej0	'
     })
