@@ -3,23 +3,23 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
-
+import { NavComponent } from './components/nav/nav.component';
 
 import { AgmCoreModule } from '@agm/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { ModalComponent } from './components/modal/modal.component';
-
+import {MatSidenavModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
-    ModalComponent
+    NavComponent,
   ],
   imports: [
     BrowserModule,
-    NgbModule,
+    MatSidenavModule,
+    BrowserAnimationsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCAZKYezUJLxkFdkaH1pxNqJeAX8OV5Ej0	'
     })
