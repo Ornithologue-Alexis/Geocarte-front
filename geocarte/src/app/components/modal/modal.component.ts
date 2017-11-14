@@ -6,12 +6,11 @@ import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
  */
 @Component({
   selector: 'modal-component',
-  templateUrl: './modal.component.html'
+  templateUrl: './modal.component.html',
+  styleUrls: ['./modal.component.css']
+
 })
 export class ModalComponent {
-
-  animal: string;
-  name: string;
 
   constructor(public dialog: MdDialog) {
     this.openDialog();
@@ -19,13 +18,11 @@ export class ModalComponent {
 
   openDialog(): void {
     let dialogRef = this.dialog.open(ModalTemplate, {
-      width: '250px',
-      data: { name: this.name, animal: this.animal }
+      panelClass: 'myapp-no-padding-dialog',
+      width: '500px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
     });
   }
 
@@ -34,6 +31,7 @@ export class ModalComponent {
 @Component({
   selector: 'modal-template',
   templateUrl: './modal.template.html',
+  styleUrls: ['./modal.component.css']
 })
 export class ModalTemplate {
 

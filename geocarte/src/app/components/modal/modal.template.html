@@ -1,11 +1,33 @@
-<h1 md-dialog-title>Hi {{data.name}}</h1>
-<div md-dialog-content>
-  <p>What's your favorite animal?</p>
-  <md-form-field>
-    <input mdInput tabindex="1" [(ngModel)]="data.animal">
-  </md-form-field>
+<div id="connect-modal">
+  <div class="header-modal d-flex justify-content-between">
+    <div class=""></div>
+    <span class=""><i class="fa fa-arrow-circle-right"></i>Identifiez-vous</span>
+    <i class="fa fa-close close-icon"(click)="onNoClick()"></i>
+  </div>
+
+  <div md-dialog-content>
+    <div>
+      <p class="p-connect">Connectez-vous afin d'accéder à toutes les fonctionnalités du site ( ajout de cartes, informations supplémentaires...</p>
+    </div>
+    <md-form-field class="connect-form">
+      <div class="form-group login-form">
+        <i class="fa fa-user col-1"></i>
+        <input mdInput tabindex="1" placeholder="Identifiant">
+      </div>
+      <div class="form-group password-form">
+        <i class="fa fa-lock col-1"></i>
+        <input mdInput tabindex="1" placeholder="Mot de passe">
+      </div>
+      <div class="form-group button-form">
+        <button type="submit" class="btn connect-button">Se connecter</button>
+      </div>
+    </md-form-field>
+
+    <div class="links-connect d-flex justify-content-between">
+      <a class="subscribe pull-left p-6">S'inscrire maintenant</a>
+      <a class="forgot-password pull-right p-6">Mot de passe oublié ?</a>
+    </div>
+  </div>
+
 </div>
-<div md-dialog-actions>
-  <button md-button [md-dialog-close]="data.animal" tabindex="2">Ok</button>
-  <button md-button (click)="onNoClick()" tabindex="-1">No Thanks</button>
-</div>
+

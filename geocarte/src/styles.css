@@ -4,4 +4,15 @@
 /* On enlève les marges initiales */
 body {
   margin: 0px;
+
+}
+
+/*Dialog sans padding*/
+.myapp-no-padding-dialog .mat-dialog-container {
+ padding: 0;
+}
+
+.myapp-no-padding-dialog .mat-dialog-content {
+  padding: 15px;
+  margin: 0;
 }
