@@ -1,0 +1,51 @@
+div.header-modal{
+  background-color: #3f51b5;
+  color:white;
+  text-align:center;
+  padding:10px;
+}
+div.header-modal span{
+  padding: 5px 0 5px 0;
+  font-size: 18px;
+  font-weight:500;
+}
+
+div.header-modal i{
+  margin-right:10px;
+}
+div.header-modal i.close-icon{
+  cursor:pointer;
+}
+p.p-connect{
+  color: #6e6e6e;
+}
+.connect-form{
+  text-align:center;
+}
+.connect-form i{
+  color: #3f51b5;
+}
+.connect-form input{
+  color: #3f51b5;
+  padding-left: 10px;
+}
+
+.connect-form .button-form{
+  margin-bottom: 0px;
+}
+.connect-form .connect-button{
+  background-color: #3f51b5;
+  color:white;
+}
+
+.connect-form .connect-button:hover{
+  background-color: white;
+  color: #3f51b5;
+  border-color: #3f51b5;
+  text-align:center;
+}
+
+.links-connect a{
+  color: #3f51b5;
+  cursor: pointer;
+}

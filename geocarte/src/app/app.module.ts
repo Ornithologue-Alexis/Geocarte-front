@@ -12,6 +12,8 @@ import {MatDialogModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ModalComponent, ModalTemplate} from './components/modal/modal.component';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,7 @@ import {ModalComponent, ModalTemplate} from './components/modal/modal.component'
     MatSidenavModule,
     MatDialogModule,
     FormsModule,
-
+    NgbModule.forRoot(),
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCAZKYezUJLxkFdkaH1pxNqJeAX8OV5Ej0	'
