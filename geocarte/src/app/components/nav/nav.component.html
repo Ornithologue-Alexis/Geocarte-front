@@ -1,14 +1,19 @@
-<md-sidenav-container class="example-container">
+<md-sidenav-container fullscreen class="sidenav-container">
   <md-sidenav #sidenav class="example-sidenav">
-    Jolly good!
+    Premier item menu
+    <button type="button" md-button (click)="sidenav.close()">
+      FERMER
+    </button>
+
   </md-sidenav>
 
   <div class="example-sidenav-content">
-    <div class="navbar">
       <button type="button" md-button (click)="sidenav.open()">
-      Open sidenav
+        MENU
       </button>
-    </div>
+
+    <div class="my-content"><app-map></app-map></div>
   </div>
+
 
 </md-sidenav-container>
