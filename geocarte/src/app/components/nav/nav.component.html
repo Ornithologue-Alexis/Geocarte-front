@@ -1,15 +1,28 @@
 <md-sidenav-container fullscreen class="sidenav-container">
-  <md-sidenav #sidenav class="example-sidenav">
-    Premier item menu
-    <button type="button" md-button (click)="sidenav.close()">
-      FERMER
+  <md-sidenav #sidenav class="sidenav">
+    <button class="pull-right" type="button" md-button (click)="sidenav.close()">
+      <i class="fa fa-close"></i>
     </button>
-
+    <div class="container nav">
+      <div class="row">
+        <div class="col item-nav">
+          <a href=""><i class="fa fa-home"></i> Accueil</a>
+        </div>
+        <div class="w-100"></div>
+        <div class="col item-nav">
+          <a href=""><i class="fa fa-home"></i> Mes cartes</a>
+        </div>
+        <div class="w-100"></div>
+        <div class="col item-nav">
+          <a href=""><i class="fa fa-home"></i> Profil</a>
+        </div>
+      </div>
+    </div>
   </md-sidenav>
 
-  <div class="example-sidenav-content">
+  <div class="sidenav-content">
       <button type="button" md-button (click)="sidenav.open()">
-        MENU
+        <i class="fa fa-bars"></i>
       </button>
 
     <div class="my-content"><app-map></app-map></div>
