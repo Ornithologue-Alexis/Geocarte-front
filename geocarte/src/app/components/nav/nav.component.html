@@ -1,25 +1,36 @@
 <md-sidenav-container fullscreen class="sidenav-container">
   <md-sidenav #sidenav class="sidenav">
-    <button class="pull-right" type="button" md-button (click)="sidenav.close()">
-      <i class="fa fa-close"></i>
-    </button>
-    <div class="container nav">
-      <div class="row">
+    <div class="col col-nav justify-content-between">
+      <div class="row row-logo align-items-start justify-content-md-center">
+        <a href=""><img class="logo" src="../../../assets/logo.png" alt="logo geocarte"/></a>
+      </div>
+      <div class="nav row">
         <div class="col item-nav">
-          <a href=""><i class="fa fa-home"></i> Accueil</a>
+          <a href="">Mes cartes</a>
         </div>
         <div class="w-100"></div>
         <div class="col item-nav">
-          <a href=""><i class="fa fa-home"></i> Mes cartes</a>
+          <a href="">Profil</a>
         </div>
-        <div class="w-100"></div>
-        <div class="col item-nav">
-          <a href=""><i class="fa fa-home"></i> Profil</a>
+      </div>
+      <div class="spacer"></div>
+      <div class="bottom-nav">
+        <ul class="row justify-content-md-center website-list ">
+          <li><a href=""><i class="fa fa-github"></i></a></li>
+          <li><a href=""><i class="fa fa-facebook"></i></a></li>
+          <li><a href=""><i class="fa fa-linkedin"></i></a></li>
+          <li><a href=""><i class="fa fa-google"></i></a></li>
+        </ul>
+        <div class="row justify-content-md-end">
+          <button class="button-close" type="button" md-button (click)="sidenav.close()">
+            <i class="fa fa-chevron-left"></i>
+          </button>
         </div>
       </div>
     </div>
-  </md-sidenav>
 
+  </md-sidenav>
+  <!--Bouton d'ouverture-->
   <div class="sidenav-content">
       <button type="button" md-button (click)="sidenav.open()">
         <i class="fa fa-bars"></i>

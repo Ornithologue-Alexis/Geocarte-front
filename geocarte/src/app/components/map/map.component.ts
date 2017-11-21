@@ -11,9 +11,15 @@ export class MapComponent implements OnInit {
   lng: number = -1.6777925999999752;
 
 
+
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  displayCard() {
+    console.log('ici');
   }
 
 }

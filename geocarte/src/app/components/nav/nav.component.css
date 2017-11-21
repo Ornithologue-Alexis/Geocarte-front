@@ -1,29 +1,25 @@
-.sidenav-content {
-  height: 100%;
-}
-
 .sidenav-content > button {
-  position : absolute;
-  top : 1%;
-  left : 1%;
+  position: absolute;
+  top: 1%;
+  left: 1%;
   z-index: 2000;
-  background-color: #3f51b5;
-  color:white;
-  border:none;
-  cursor:pointer;
+  background-color: rgba(31, 31, 71, 0.8);
+  color: white;
+  border: none;
+  cursor: pointer;
   width: 50px;
   height: 50px;
 }
 
 .sidenav-content > button:hover {
-  position : absolute;
-  top : 1%;
-  left : 1%;
+  position: absolute;
+  top: 1%;
+  left: 1%;
   z-index: 2000;
   background-color: white;
-  color:#3f51b5;
-  border:none;
-  cursor:pointer;
+  color: rgba(31, 31, 71, 0.8);
+  border: none;
+  cursor: pointer;
   width: 50px;
   height: 50px;
 }
@@ -32,33 +28,90 @@
   font-size: 25px;
 }
 
-
 .sidenav {
-  padding: 20px;
+  height: 100%;
+  background-color: rgba(31, 31, 71, 0.8);
+  width: 20%;
 }
 
-.sidenav > button{
-   background-color: #3f51b5;
-   color:white;
-   border:none;
-   cursor:pointer;
- }
+.sidenav>.col-nav{
+  height: 100%;
+}
 
-.sidenav > button:hover{
+
+.sidenav div.row{
+  margin: 0px;
+}
+
+.sidenav div.row-logo{
+  padding : 20px;
+  height: 30%;
+}
+
+/*Taille du logo*/
+.sidenav div.row-logo img.logo{
+  width: 125px;
+
+}
+
+.sidenav .nav{
+  height: 30%;
+}
+.sidenav .nav .item-nav{
+  height: 20px;
+  line-height:20px;
+  text-align: right;
+}
+
+.sidenav .nav .item-nav a {
+  text-decoration: none;
+  font-size: 15px;
+  color: white;
+  text-transform: uppercase;
+  font-weight:bold;
+}
+
+.sidenav .nav .item-nav a:hover{
+  color: #ffc51f;
+}
+
+.sidenav div.spacer{
+  height: 20%;
+}
+
+.sidenav .bottom-nav{
+  height : 10%;
+}
+.sidenav ul.website-list{
+  list-style: none;
+  color:white;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.sidenav ul.website-list>li{
+  padding: 0 10px 0 10px;
+  font-size: 25px;
+}
+
+.sidenav ul.website-list>li>a{
+  color:white;
+}
+
+
+
+
+.sidenav button.button-close {
   background-color: white;
-  color:#3f51b5;
-  border:none;
-  cursor:pointer;
+  color: rgba(31, 31, 71, 0.8);
+  cursor: pointer;
+  border: solid rgba(31, 31, 71, 0.8) 1px;
+  margin: 20px;
+  width: 50px;
+  height: 50px;
 }
 
-.sidenav > .nav .item-nav{
-   height:100px;
-  vertical-align:middle;
-}
-
-.sidenav > .nav .item-nav a{
-  vertical-align:middle;
-  font-size: 20px;
-  text-decoration:none;
-  color: #3f51b5;
+.sidenav button.button-close:hover {
+  color: black;
 }
