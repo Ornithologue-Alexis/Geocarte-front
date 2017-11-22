@@ -6,8 +6,8 @@ import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
  */
 @Component({
   selector: 'modal-component',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css']
+  templateUrl: './firstconnect.component.html',
+  styleUrls: ['./firstconnect.component.css']
 
 })
 export class ModalComponent {
@@ -30,8 +30,8 @@ export class ModalComponent {
 
 @Component({
   selector: 'modal-template',
-  templateUrl: './modal.template.html',
-  styleUrls: ['./modal.component.css']
+  templateUrl: './firstconnect.template.html',
+  styleUrls: ['./firstconnect.component.css']
 })
 export class ModalTemplate {
 

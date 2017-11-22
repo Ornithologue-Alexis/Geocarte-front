@@ -10,16 +10,12 @@ export class MapComponent implements OnInit {
   lat: number = 48.117266 ;
   lng: number = -1.6777925999999752;
 
-
-
-
   constructor() { }
 
   ngOnInit() {
   }
 
-  displayCard() {
-    console.log('ici');
+  clickedMarker(){
+    console.log("ici");
   }
-
 }

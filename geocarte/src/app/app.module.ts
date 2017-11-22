@@ -10,7 +10,7 @@ import { AgmCoreModule } from '@agm/core';
 import {MatSidenavModule} from '@angular/material';
 import {MatDialogModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ModalComponent, ModalTemplate} from './components/modal/modal.component';
+import {ModalComponent, ModalTemplate} from './components/firstconnect/firstconnect.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
