@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { MapComponent } from './components/map/map.component';
+import {CardTemplate, MapComponent} from './components/map/map.component';
 import { NavComponent } from './components/nav/nav.component';
 
 import { AgmCoreModule } from '@agm/core';
@@ -22,6 +22,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     NavComponent,
     ModalTemplate,
     ModalComponent,
+    CardTemplate
   ],
   imports: [
     BrowserModule,
@@ -34,7 +35,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
       apiKey: 'AIzaSyCAZKYezUJLxkFdkaH1pxNqJeAX8OV5Ej0	'
     })
   ],
-  entryComponents: [ModalTemplate],
+  entryComponents: [ModalTemplate, CardTemplate],
   providers: [],
   bootstrap: [AppComponent]
 })
