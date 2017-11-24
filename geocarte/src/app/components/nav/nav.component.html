@@ -5,10 +5,10 @@
         <a href=""><img class="logo" src="../../../assets/img/logo.png" alt="logo geocarte"/></a>
       </div>
       <div class="item-nav">
-        <a href="">Mes cartes</a>
+        <button type="button" class="btn btn-link" (click)="openMenuPage('myCards')" >Mes cartes</button>
       </div>
       <div class="item-nav">
-        <a href="">Profil</a>
+        <button type="button" class="btn btn-link" (click)="openMenuPage('profil')" >Profil</button>
       </div>
       <div class="item-nav">
         <a href="">Se déconnecter</a>
@@ -34,6 +34,17 @@
       <i class="fa fa-bars"></i>
     </button>
 
-    <div class="my-content"><app-map></app-map></div>
+    <div class="my-content">
+      <div class="menuDiv" *ngIf="myCards || profil">
+        <app-mycards *ngIf="myCards"></app-mycards>
+        <app-profil *ngIf="profil"></app-profil>
+        <div class="div-button">
+          <button class="button-close" type="button" md-button (click)="openMenuPage('myCards')">
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <app-map></app-map>
+    </div>
   </div>
 </md-sidenav-container>

@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import {CardTemplate, MapComponent} from './components/map/map.component';
 import { NavComponent } from './components/nav/nav.component';
+import { MycardsComponent } from './components/mycards/mycards.component';
+import { ProfilComponent } from './components/profil/profil.component';
 
 import { AgmCoreModule } from '@agm/core';
 import {MatSidenavModule} from '@angular/material';
