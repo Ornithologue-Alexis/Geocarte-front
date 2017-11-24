@@ -66,9 +66,10 @@
   color: white;
   text-transform: uppercase;
   font-weight:bold;
+  cursor: pointer;
 }
 
-.sidenav .item-nav a:hover{
+.sidenav .item-nav button:hover{
   color: #ffc51f;
 }
 

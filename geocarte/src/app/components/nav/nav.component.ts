@@ -33,4 +33,9 @@ export class NavComponent implements OnInit {
     this.sidenav.close();
   }
 
+  closeAll(){
+    this.myCards = false;
+    this.profil = false;
+  }
+
 }

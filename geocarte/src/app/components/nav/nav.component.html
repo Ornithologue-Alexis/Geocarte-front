@@ -11,7 +11,7 @@
         <button type="button" class="btn btn-link" (click)="openMenuPage('profil')" >Profil</button>
       </div>
       <div class="item-nav">
-        <a href="">Se déconnecter</a>
+        <button type="button" class="btn btn-link" (click)="disconnect()">Se déconnecter</button>
       </div>
       <div class="bottom-nav">
         <ul class="website-list ">
@@ -39,7 +39,7 @@
         <app-mycards *ngIf="myCards"></app-mycards>
         <app-profil *ngIf="profil"></app-profil>
         <div class="div-button">
-          <button class="button-close" type="button" md-button (click)="openMenuPage('myCards')">
+          <button class="button-close" type="button" md-button (click)="closeAll()">
             <i class="fa fa-times"></i>
           </button>
         </div>

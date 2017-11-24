@@ -24,7 +24,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     NavComponent,
     ModalTemplate,
     ModalComponent,
-    CardTemplate
+    CardTemplate,
+    MycardsComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,
