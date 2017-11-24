@@ -15,6 +15,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ModalComponent, ModalTemplate} from './components/firstconnect/firstconnect.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HowtoComponent, HowToTemplate} from './components/howto/howto.component';
 
 
 @NgModule({
@@ -26,7 +27,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     ModalComponent,
     CardTemplate,
     MycardsComponent,
-    ProfilComponent
+    ProfilComponent,
+    HowtoComponent,
+    HowToTemplate
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
       apiKey: 'AIzaSyCAZKYezUJLxkFdkaH1pxNqJeAX8OV5Ej0	'
     })
   ],
-  entryComponents: [ModalTemplate, CardTemplate],
+  entryComponents: [ModalTemplate, CardTemplate, HowToTemplate],
   providers: [],
   bootstrap: [AppComponent]
 })
