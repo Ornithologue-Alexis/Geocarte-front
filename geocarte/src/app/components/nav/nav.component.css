@@ -11,6 +11,7 @@
   cursor: pointer;
   width: 50px;
   height: 50px;
+  z-index : 100;
 }
 
 .button-sidenav > button:hover {
@@ -119,7 +120,27 @@
 
 /*Style pour les pages du menu*/
 
-.menuDiv {
+.sidenav-container div.my-content div.div-button{
+  position : absolute;
+  top : 1%;
+  right : 1%;
+}
+
+.sidenav-container div.my-content div.div-button button.button-close{
+  color: white;
+  border: none;
+  cursor: pointer;
+  background-color: Transparent;
+  width:5rem;
+  height:5rem;
+}
+
+.sidenav-container div.my-content div.div-button button.button-close i{
+  font-size : 25px;
+}
+
+
+.sidenav-container .menuDiv {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -127,7 +148,8 @@
   left: 0;
   height: 100vh;
   width:100%;
-  z-index : 2000;
+  z-index : 2;
   background-color : black;
-  opacity : 0.7;
+  opacity : 0.8;
+  overflow : auto;
 }

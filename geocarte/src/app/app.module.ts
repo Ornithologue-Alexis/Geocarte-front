@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { MapComponent } from './components/map/map.component';
 import { NavComponent } from './components/nav/nav.component';
+import { MycardsComponent } from './components/mycards/mycards.component';
+import { ProfilComponent } from './components/profil/profil.component';
 
 import { AgmCoreModule } from '@agm/core';
 import {MatSidenavModule} from '@angular/material';
@@ -22,6 +24,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     NavComponent,
     ModalTemplate,
     ModalComponent,
+    MycardsComponent,
+    ProfilComponent,
   ],
   imports: [
     BrowserModule,

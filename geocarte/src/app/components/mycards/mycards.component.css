@@ -1,0 +1,23 @@
+.user_name {
+  color : white;
+  padding : 3rem 0 3rem 8%;
+  font-size : 2rem;
+}
+
+.diaporama {
+  max-width : 90%;
+  margin: 0 auto;
+}
+
+.cartePostale {
+  width:32%;
+  margin-bottom : 2rem;
+  display : inline-block;
+}
+
+.cartePostale > img{
+  display:block;
+  margin: 0 auto;
+  width:80%;
+  height: 20rem;
+}
