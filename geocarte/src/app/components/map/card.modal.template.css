@@ -17,6 +17,9 @@ div.header-modal i.close-icon{
   cursor:pointer;
 }
 
+img.img-card{
+  width:100%;
+}
 
 /*Photo*/
 div.avatar-row{

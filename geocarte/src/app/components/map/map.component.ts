@@ -25,6 +25,9 @@ export class MapComponent implements OnInit {
       height: '75%'
     });
   }
+  mapClicked($event: MouseEvent) {
+    console.log("ici");
+  }
 }
 
 @Component({

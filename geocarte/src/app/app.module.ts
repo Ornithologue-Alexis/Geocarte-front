@@ -16,6 +16,7 @@ import {ModalComponent, ModalTemplate} from './components/firstconnect/firstconn
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HowtoComponent, HowToTemplate} from './components/howto/howto.component';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {HowtoComponent, HowToTemplate} from './components/howto/howto.component'
     MycardsComponent,
     ProfilComponent,
     HowtoComponent,
-    HowToTemplate
+    HowToTemplate,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
