@@ -31,7 +31,8 @@ import { HeaderComponent } from './header/header.component';
     ProfilComponent,
     HowtoComponent,
     HowToTemplateComponent,
-    HeaderComponent
+    HeaderComponent,
+
   ],
   imports: [
     BrowserModule,
