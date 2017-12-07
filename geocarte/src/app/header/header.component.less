@@ -1,5 +1,5 @@
 #header{
-  width: 70%;
+  width: 30%;
   background-color: rgba(31, 31, 71, 0.8);
   z-index: 15000;
   opacity: 1;
@@ -8,15 +8,14 @@
     color: white;
     font-size: 20px;
   }
-  #header-button-search{
-    background-color:white;
-    color: rgba(31, 31, 71, 0.8);
-    cursor: pointer;
-    i{
-      color: rgba(31, 31, 71, 0.8);
-    }
+
+  .filter-input{
+    text-align: center;
+    padding: 10px;
   }
-  #header-button-search:hover{
-    color: #ffc51f;
+  @media (min-width: 576px){
+    .form-inline .form-control{
+      width: inherit;
+    }
   }
 }

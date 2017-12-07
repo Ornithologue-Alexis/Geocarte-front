@@ -4,7 +4,6 @@
   position: absolute;
   top: 1%;
   left: 1%;
-  z-index: 2000;
   background-color: rgba(31, 31, 71, 0.8);
   color: white;
   border: none;
@@ -31,6 +30,7 @@
 .sidenav {
   background-color: rgba(31, 31, 71, 0.8);
   width: 20%;
+  z-index: 20000;
 }
 
 .sidenav .col-nav{

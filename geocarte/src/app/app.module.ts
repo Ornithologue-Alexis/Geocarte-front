@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { CardTemplateComponent, MapComponent} from './components/map/map.component';
+import {CardAddTemplateComponent, CardTemplateComponent, MapComponent} from './components/map/map.component';
 import { NavComponent } from './components/nav/nav.component';
 import { MycardsComponent } from './components/mycards/mycards.component';
 import { ProfilComponent } from './components/profil/profil.component';
@@ -32,6 +32,7 @@ import { HeaderComponent } from './header/header.component';
     HowtoComponent,
     HowToTemplateComponent,
     HeaderComponent,
+    CardAddTemplateComponent,
 
   ],
   imports: [
@@ -45,7 +46,7 @@ import { HeaderComponent } from './header/header.component';
       apiKey: 'AIzaSyCAZKYezUJLxkFdkaH1pxNqJeAX8OV5Ej0	'
     })
   ],
-  entryComponents: [ModalTemplateComponent, CardTemplateComponent, HowToTemplateComponent],
+  entryComponents: [ModalTemplateComponent, CardTemplateComponent, HowToTemplateComponent, CardAddTemplateComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
