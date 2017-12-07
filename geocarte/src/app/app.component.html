@@ -1,3 +1,4 @@
-<app-nav></app-nav>
+<app-header *ngIf="!navComponent.sidenav.opened && !navComponent.profil && !navComponent.myCards"></app-header>
+<app-nav #appNav></app-nav>
 <app-modal-component></app-modal-component>
 <app-howto></app-howto>

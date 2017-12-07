@@ -21,7 +21,7 @@
           <li><a href=""><i class="fa fa-google"></i></a></li>
         </ul>
         <div class="div-button">
-          <button class="button-close" type="button" md-button (click)="sidenav.close()">
+          <button class="button-close" type="button" md-button (click)="closeMenu()">
             <i class="fa fa-chevron-left"></i>
           </button>
         </div>
@@ -30,7 +30,7 @@
   </mat-sidenav>
   <!--Bouton d'ouverture-->
   <div class="button-sidenav">
-    <button type="button" md-button (click)="sidenav.open()">
+    <button type="button" md-button (click)="openMenu()">
       <i class="fa fa-bars"></i>
     </button>
 
@@ -44,7 +44,6 @@
           </button>
         </div>
       </div>
-      <app-header></app-header>
       <app-map></app-map>
     </div>
   </div>

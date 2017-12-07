@@ -1,14 +1,36 @@
 <div class="user_name"><p>Alexis Renault</p></div>
 <div class="formulaire">
   <form>
-    <div class="input_profil">
-      <div class="label">Nouveau mot de passe</div><input class="name" type="text">
+    <div class="form-group row">
+      <label for="inputEmail" class="col-12 col-form-label">Email address</label>
+      <div class="col-12">
+        <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
     </div>
-    <div class="input_profil">
-      <div class="label">Changer d'avatar</div><input name="monFichier" type="file">
+    <div class="form-group row">
+      <label for="dateInput" class="col-12 col-form-label">Date</label>
+      <div class="col-12">
+        <input class="form-control" type="date" value="2011-08-19" id="dateInput">
+      </div>
     </div>
-    <div class="input_profil">
-      <input type="submit">
+    <div class="form-group row">
+      <label for="InputOldPassword" class="col-12 col-form-label">Ancien mot de passe</label>
+      <div class="col-12">
+        <input type="password" class="form-control" id="InputOldPassword" placeholder="Password">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="InputNewPassword" class="col-12 col-form-label">Nouveau mot de passe</label>
+      <div class="col-12">
+        <input type="password" class="form-control" id="InputNewPassword" placeholder="Password">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="InputConfirmNewPassword" class="col-12 col-form-label">Confirmer nouveau mot de passe</label>
+      <div class="col-12">
+        <input type="password" class="form-control" id="InputConfirmNewPassword" placeholder="Password">
+      </div>
     </div>
   </form>
 </div>

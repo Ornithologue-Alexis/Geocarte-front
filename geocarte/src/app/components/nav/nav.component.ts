@@ -17,6 +17,14 @@ export class NavComponent implements OnInit {
   ngOnInit() {
   }
 
+  openMenu() {
+    this.sidenav.open();
+  }
+
+  closeMenu() {
+    this.sidenav.close();
+  }
+
   openMenuPage(page: string) {
     if (page === 'myCards' && !this.myCards) {
       this.myCards = true;

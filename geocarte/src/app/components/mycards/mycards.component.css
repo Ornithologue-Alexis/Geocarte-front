@@ -10,6 +10,7 @@
 }
 
 .cartePostale {
+  position: relative;
   width:32%;
   margin-bottom : 2rem;
   display : inline-block;
@@ -18,6 +19,36 @@
 .cartePostale > img{
   display:block;
   margin: 0 auto;
-  width:80%;
+  width:90%;
   height: 20rem;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 100%;
+  left: 5%;
+  right: 5%;
+  background-color: rgba(31, 31, 71, 0.8);
+  overflow: hidden;
+  width: 90%;
+  height:0;
+  transition: .5s ease;
+}
+
+.cartePostale:hover .overlay {
+  bottom: 0;
+  height: 100%;
+}
+
+.text {
+  white-space: nowrap;
+  color: white;
+  font-size: 4rem;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
 }
