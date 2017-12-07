@@ -1,5 +1,5 @@
-<md-sidenav-container fullscreen class="sidenav-container">
-  <md-sidenav #sidenav class="sidenav">
+<mat-sidenav-container fullscreen class="sidenav-container">
+  <mat-sidenav #sidenav class="sidenav">
     <div class="col-nav">
       <div class="row-logo">
         <a href=""><img class="logo" src="../../../assets/img/logo.png" alt="logo geocarte"/></a>
@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-  </md-sidenav>
+  </mat-sidenav>
   <!--Bouton d'ouverture-->
   <div class="button-sidenav">
     <button type="button" md-button (click)="sidenav.open()">
@@ -44,7 +44,8 @@
           </button>
         </div>
       </div>
+      <app-header></app-header>
       <app-map></app-map>
     </div>
   </div>
-</md-sidenav-container>
+</mat-sidenav-container>

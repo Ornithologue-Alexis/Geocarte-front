@@ -17,23 +17,21 @@ export class NavComponent implements OnInit {
   ngOnInit() {
   }
 
-  openMenuPage(page:string)
-  {
-    if(page === "myCards" && !this.myCards)
-    {
+  openMenuPage(page: string) {
+    if (page === 'myCards' && !this.myCards) {
       this.myCards = true;
       this.profil = false;
-    }else if(page === "profil" && !this.profil){
+    }else if (page === 'profil' && !this.profil) {
       this.myCards = false;
       this.profil = true;
-    }else{
+    }else {
       this.myCards = false;
       this.profil = false;
     }
     this.sidenav.close();
   }
 
-  closeAll(){
+  closeAll() {
     this.myCards = false;
     this.profil = false;
   }
