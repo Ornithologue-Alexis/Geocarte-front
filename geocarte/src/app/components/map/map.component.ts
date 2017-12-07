@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 declare let google: any;
 
 
@@ -10,8 +10,8 @@ declare let google: any;
 })
 export class MapComponent implements OnInit {
 
-  lat: number = 48.1246539 ;
-  lng: number = -1.652399100000025;
+  lat = 48.1246539 ;
+  lng = -1.652399100000025;
 
   markers: marker[] = [
     {
@@ -22,14 +22,14 @@ export class MapComponent implements OnInit {
     },
   ];
 
-  constructor(public dialog: MdDialog) {
+  constructor(public dialog: MatDialog) {
   }
 
   ngOnInit() {
   }
 
-  clickedMarker(){
-    let dialogRef = this.dialog.open(CardTemplate, {
+  clickedMarker() {
+    const dialogRef = this.dialog.open(CardTemplateComponent, {
       panelClass: 'myapp-no-padding-dialog',
       width: '75%',
       height: '75%'
@@ -41,7 +41,7 @@ export class MapComponent implements OnInit {
       lng: $event.coords.lng,
       icon: 'blue'
     });
-    let dialogRef = this.dialog.open(CardTemplate, {
+    const dialogRef = this.dialog.open(CardTemplateComponent, {
       panelClass: 'myapp-no-padding-dialog',
       width: '75%',
       height: '75%'
@@ -52,19 +52,19 @@ export class MapComponent implements OnInit {
 
   getGeoLocation(lat: number, lng: number) {
     if (navigator.geolocation) {
-      let geocoder = new google.maps.Geocoder();
-      let latlng = new google.maps.LatLng(lat, lng);
-      let request = { latLng: latlng };
+      const geocoder = new google.maps.Geocoder();
+      const latlng = new google.maps.LatLng(lat, lng);
+      const request = { latLng: latlng };
 
       geocoder.geocode(request, (results, status) => {
-        if (status == google.maps.GeocoderStatus.OK) {
-          let result = results[0];
-          let rsltAdrComponent = result.address_components;
-          let resultLength = rsltAdrComponent.length;
+        if (status === google.maps.GeocoderStatus.OK) {
+          const result = results[0];
+          const rsltAdrComponent = result.address_components;
+          const resultLength = rsltAdrComponent.length;
           if (result != null) {
             return result.formatted_address;
           } else {
-            alert("No address available!");
+            alert('No address available!');
           }
         }
       });
@@ -73,14 +73,14 @@ export class MapComponent implements OnInit {
 }
 
 @Component({
-  selector: 'modal-template',
+  selector: 'app-modal-template',
   templateUrl: './card.modal.template.html',
   styleUrls: ['./card.modal.template.css']
 })
-export class CardTemplate {
+export class CardTemplateComponent {
   constructor(
-    public dialogRef: MdDialogRef<CardTemplate>,
-    @Inject(MD_DIALOG_DATA) public data: any) { }
+    public dialogRef: MatDialogRef<CardTemplateComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {
     this.dialogRef.close();

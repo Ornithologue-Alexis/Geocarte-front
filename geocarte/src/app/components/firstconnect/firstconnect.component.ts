@@ -1,23 +1,23 @@
 import {Component, Inject} from '@angular/core';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 /**
  * @title Dialog Overview
  */
 @Component({
-  selector: 'modal-component',
+  selector: 'app-modal-component',
   templateUrl: './firstconnect.component.html',
   styleUrls: ['./firstconnect.component.css']
 
 })
 export class ModalComponent {
 
-  constructor(public dialog: MdDialog) {
+  constructor(public dialog: MatDialog) {
     this.openDialog();
   }
 
   openDialog(): void {
-    let dialogRef = this.dialog.open(ModalTemplate, {
+    const dialogRef = this.dialog.open(ModalTemplateComponent, {
       panelClass: 'myapp-no-padding-dialog',
       width: '500px',
     });
@@ -29,15 +29,15 @@ export class ModalComponent {
 }
 
 @Component({
-  selector: 'modal-template',
+  selector: 'app-modal-template',
   templateUrl: './firstconnect.template.html',
   styleUrls: ['./firstconnect.component.css']
 })
-export class ModalTemplate {
+export class ModalTemplateComponent {
 
   constructor(
-    public dialogRef: MdDialogRef<ModalTemplate>,
-    @Inject(MD_DIALOG_DATA) public data: any) { }
+    public dialogRef: MatDialogRef<ModalTemplateComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {
     this.dialogRef.close();

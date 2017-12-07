@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import {CardTemplate, MapComponent} from './components/map/map.component';
+import { CardTemplateComponent, MapComponent} from './components/map/map.component';
 import { NavComponent } from './components/nav/nav.component';
 import { MycardsComponent } from './components/mycards/mycards.component';
 import { ProfilComponent } from './components/profil/profil.component';
@@ -12,10 +12,10 @@ import { AgmCoreModule } from '@agm/core';
 import {MatSidenavModule} from '@angular/material';
 import {MatDialogModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ModalComponent, ModalTemplate} from './components/firstconnect/firstconnect.component';
+import {ModalComponent, ModalTemplateComponent} from './components/firstconnect/firstconnect.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {HowtoComponent, HowToTemplate} from './components/howto/howto.component';
+import {HowtoComponent, HowToTemplateComponent} from './components/howto/howto.component';
 import { HeaderComponent } from './header/header.component';
 
 
@@ -24,13 +24,13 @@ import { HeaderComponent } from './header/header.component';
     AppComponent,
     MapComponent,
     NavComponent,
-    ModalTemplate,
+    ModalTemplateComponent,
     ModalComponent,
-    CardTemplate,
+    CardTemplateComponent,
     MycardsComponent,
     ProfilComponent,
     HowtoComponent,
-    HowToTemplate,
+    HowToTemplateComponent,
     HeaderComponent
   ],
   imports: [
@@ -44,7 +44,7 @@ import { HeaderComponent } from './header/header.component';
       apiKey: 'AIzaSyCAZKYezUJLxkFdkaH1pxNqJeAX8OV5Ej0	'
     })
   ],
-  entryComponents: [ModalTemplate, CardTemplate, HowToTemplate],
+  entryComponents: [ModalTemplateComponent, CardTemplateComponent, HowToTemplateComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

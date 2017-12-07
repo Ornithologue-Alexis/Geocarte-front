@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MD_DIALOG_DATA, MdDialog, MdDialogRef} from "@angular/material";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-howto',
@@ -8,13 +8,13 @@ import {MD_DIALOG_DATA, MdDialog, MdDialogRef} from "@angular/material";
 })
 export class HowtoComponent implements OnInit {
 
-  constructor(public dialog: MdDialog) { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
 
-  openModal(){
-    let dialogRef = this.dialog.open(HowToTemplate, {
+  openModal() {
+    const dialogRef = this.dialog.open(HowToTemplateComponent, {
       panelClass: 'myapp-no-padding-dialog',
       width: '75%',
       height: '75%'
@@ -24,14 +24,14 @@ export class HowtoComponent implements OnInit {
 }
 
 @Component({
-  selector: 'modal-template',
+  selector: 'app-modal-template',
   templateUrl: './howto.modal.template.html',
   styleUrls: ['./howto.modal.template.css']
 })
-export class HowToTemplate {
+export class HowToTemplateComponent {
   constructor(
-    public dialogRef: MdDialogRef<HowToTemplate>,
-    @Inject(MD_DIALOG_DATA) public data: any) { }
+    public dialogRef: MatDialogRef<HowToTemplateComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {
     this.dialogRef.close();
