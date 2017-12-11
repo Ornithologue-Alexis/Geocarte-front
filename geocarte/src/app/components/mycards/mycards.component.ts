@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MycardsComponent implements OnInit {
 
+  singleCard = false;
+  cardUrl = '';
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  openSingleCard() {
+    this.singleCard = true;
+    this.cardUrl = '../../assets/img/villard-0675-n1-2.jpg';
+  }
+
+  closeSingleCard() {
+    this.singleCard = false;
   }
 
 

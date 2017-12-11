@@ -14,6 +14,7 @@
   width:32%;
   margin-bottom : 2rem;
   display : inline-block;
+  cursor : pointer;
 }
 
 .cartePostale > img{
@@ -52,3 +53,43 @@
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
 }
+
+.singleCard {
+  width : 100%;
+}
+
+.cardInfos {
+  width : 60%;
+  display : block;
+  margin : 0 auto;
+}
+
+.cardInfos .div-button {
+  color : white;
+  cursor : pointer;
+}
+
+.singlePostCard {
+  width : 59%;
+  display : inline-block;
+  vertical-align:top;
+  padding-right : 1.3rem;
+  border-right : 2px solid white;
+}
+
+.cardInfosText {
+  width : 39%;
+  padding-left : 1rem;
+  display : inline-block;
+  vertical-align:top;
+  color : white;
+}
+
+button.button-close{
+  color: white;
+  border: none;
+  cursor: pointer;
+  background-color: Transparent;
+  height:3rem;
+}
+
