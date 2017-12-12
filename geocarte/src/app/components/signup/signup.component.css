@@ -1,0 +1,16 @@
+.formulaire {
+  width : 40%;
+  margin: 0 auto;
+  color : white;
+  padding : 5rem 0;
+}
+
+.formulaire div.input_profil{
+  margin : 2rem 0;
+}
+
+
+.formulaire div.input_profil input {
+  background-color : #FFFFFF;
+  z-index : 3;
+}

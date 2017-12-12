@@ -7,6 +7,7 @@ import {CardAddTemplateComponent, CardTemplateComponent, MapComponent} from './c
 import { NavComponent } from './components/nav/nav.component';
 import { MycardsComponent } from './components/mycards/mycards.component';
 import { ProfilComponent } from './components/profil/profil.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 import { AgmCoreModule } from '@agm/core';
 import {MatSidenavModule} from '@angular/material';
@@ -29,6 +30,7 @@ import { HeaderComponent } from './header/header.component';
     CardTemplateComponent,
     MycardsComponent,
     ProfilComponent,
+    SignupComponent,
     HowtoComponent,
     HowToTemplateComponent,
     HeaderComponent,

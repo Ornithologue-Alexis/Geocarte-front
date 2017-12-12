@@ -12,6 +12,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatFormField} from '@angular/m
 })
 export class ModalComponent {
 
+  openSignup: boolean;
+
   constructor(public dialog: MatDialog) {
     this.openDialog();
   }
@@ -19,10 +21,11 @@ export class ModalComponent {
   openDialog(): void {
     const dialogRef = this.dialog.open(ModalTemplateComponent, {
       panelClass: 'myapp-no-padding-dialog',
-      width: '500px',
+      width: '500px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.openSignup = result;
     });
   }
 
@@ -35,12 +38,19 @@ export class ModalComponent {
 })
 export class ModalTemplateComponent {
 
+  openSignup = false;
+
   constructor(
     public dialogRef: MatDialogRef<ModalTemplateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  openSignupPanel() {
+    this.openSignup = true;
+    this.dialogRef.close(this.openSignup);
   }
 
 }

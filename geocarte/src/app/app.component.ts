@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavComponent } from './components/nav/nav.component';
+import { ModalComponent } from './components/firstconnect/firstconnect.component';
 
 @Component({
   selector: 'app-root',
@@ -10,5 +11,6 @@ export class AppComponent {
   title = 'app';
   menuOpen = false;
   @ViewChild('appNav') navComponent: NavComponent;
+  @ViewChild('appModal') modalComponent: ModalComponent;
 
 }

@@ -10,6 +10,7 @@ export class NavComponent implements OnInit {
 
   myCards = false;
   profil = false;
+  @Input() signup = false;
   @ViewChild('sidenav') sidenav: MatSidenav;
   constructor() { }
 
@@ -28,12 +29,19 @@ export class NavComponent implements OnInit {
     if (page === 'myCards' && !this.myCards) {
       this.myCards = true;
       this.profil = false;
+      this.signup = false;
     }else if (page === 'profil' && !this.profil) {
       this.myCards = false;
       this.profil = true;
+      this.signup = false;
+    }else if (page === 'signup' && !this.signup) {
+      this.myCards = false;
+      this.profil = false;
+      this.signup = true;
     }else {
       this.myCards = false;
       this.profil = false;
+      this.signup = false;
     }
     this.sidenav.close();
   }
@@ -41,6 +49,7 @@ export class NavComponent implements OnInit {
   closeAll() {
     this.myCards = false;
     this.profil = false;
+    this.signup = false;
   }
 
 }
