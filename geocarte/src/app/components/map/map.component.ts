@@ -13,6 +13,8 @@ export class MapComponent implements OnInit {
   lat = 48.1246539 ;
   lng = -1.652399100000025;
 
+  mapZoom = 8;
+
   lastAdressCliqued = '';
 
   markers: marker[] = [
@@ -52,6 +54,12 @@ export class MapComponent implements OnInit {
     });
   }
 
+  // On enlève les markers si trop de zoom
+  zoomChange($event){
+    if($event > 13){
+      this.markers = [];
+    }
+  }
 
   getGeoLocation(lat: number, lng: number) {
     if (navigator.geolocation) {

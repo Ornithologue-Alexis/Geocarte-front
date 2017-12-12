@@ -1,5 +1,8 @@
 <nav id="header" class="navbar navbar-inverse container">
-  <form class="form-inline container-fluid">
+  <div *ngIf="filter === false" class="col-12 hide-filter">
+    <i (click)="swapFilter()" class="fa fa-caret-down"></i>
+  </div>
+  <form *ngIf="filter" class="form-inline container-fluid">
     <div class="col-6 filter-input">
       <i class="fa fa-building"></i>
       <input class="form-control" type="text" placeholder="Filtrez par ville">
@@ -16,5 +19,11 @@
       <i class="fa fa-commenting"></i>
       <input class="form-control" type="text" placeholder="Recherchez une légende">
     </div>
+    <div class="col-12 button-submit">
+      <button class=""><i class="fa fa-search"></i></button>
+    </div>
   </form>
+  <div *ngIf="filter === true" class="col-12 hide-filter">
+    <i (click)="swapFilter()" class="fa fa-caret-up"></i>
+  </div>
 </nav>
