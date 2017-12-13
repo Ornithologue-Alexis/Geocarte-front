@@ -1,5 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatFormField} from '@angular/material';
+import { FirstconnectService } from './firstconnect.service';
 
 /**
  * @title Dialog Overview
@@ -7,14 +8,15 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatFormField} from '@angular/m
 @Component({
   selector: 'app-modal-component',
   templateUrl: './firstconnect.component.html',
-  styleUrls: ['./firstconnect.component.css']
+  styleUrls: ['./firstconnect.component.css'],
+  providers: [FirstconnectService],
 
 })
 export class ModalComponent {
 
   openSignup: boolean;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private firstconnectService: FirstconnectService) {
     this.openDialog();
   }
 
@@ -26,6 +28,8 @@ export class ModalComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       this.openSignup = result;
+      this.firstconnectService.getAllUsers();
+      console.log(result);
     });
   }
 
