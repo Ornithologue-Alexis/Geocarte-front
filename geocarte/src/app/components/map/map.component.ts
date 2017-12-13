@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {HttpClient} from "@angular/common/http";
 declare let google: any;
 
 
@@ -26,10 +27,17 @@ export class MapComponent implements OnInit {
     },
   ];
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private http: HttpClient) {
   }
 
   ngOnInit() {
+    this.getAllMarkers();
+  }
+
+  getAllMarkers(){
+    this.http.get('http://localhost:8080/cartePostale/').subscribe(data => {
+      console.log(data);
+    });
   }
 
   clickedMarker() {
