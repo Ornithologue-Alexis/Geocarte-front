@@ -31,11 +31,19 @@ export class MapComponent implements OnInit {
     },
   ];
 
-  constructor(public dialog: MatDialog, private http: HttpClient) {
+  constructor(public dialog: MatDialog, private mapService: MapService) {
   }
 
   ngOnInit() {
     this.getCartes();
+  }
+
+  getCartes(){
+    let datas = this.mapService.getCartePostale().then(data => {
+      this.cartePostale = data;
+    });
+
+    console.log(this.cartePostale)
   }
 
 
@@ -71,9 +79,7 @@ export class MapComponent implements OnInit {
     }
   }
 
-  getCartes(){
 
-  }
 
   getGeoLocation(lat: number, lng: number) {
     if (navigator.geolocation) {
