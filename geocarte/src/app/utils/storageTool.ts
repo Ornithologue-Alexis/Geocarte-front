@@ -1,20 +1,24 @@
-export class LocalStorage {
+export default class StorageTool {
 
-  isEmpty(): boolean {
+  static isEmpty(): boolean {
     if (localStorage.length === 0) {
       return true;
     }
     return false;
   }
 
-  setIdUtilisateur(idUser: number): void {
+  static setIdUtilisateur(idUser: number): void {
     localStorage.setItem('currentUserId', idUser.toString());
   }
 
-  getIdUtilisateur(): String {
+  static getIdUtilisateur(): string {
     if (localStorage.getItem('currentUserId')) {
       return localStorage.getItem('currentUserId');
     }
+  }
+
+  static disconnect(): void {
+    localStorage.clear();
   }
 
 }

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MycardsService } from './mycards.service';
 
 @Component({
   selector: 'app-mycards',
   templateUrl: './mycards.component.html',
-  styleUrls: ['./mycards.component.css']
+  styleUrls: ['./mycards.component.css'],
+  providers: [MycardsService]
 })
 export class MycardsComponent implements OnInit {
 

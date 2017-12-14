@@ -4,16 +4,16 @@
       <div class="row-logo">
         <a href=""><img class="logo" src="../../../assets/img/logo.png" alt="logo geocarte"/></a>
       </div>
-      <div class="item-nav">
+      <div class="item-nav" *ngIf="isConnected">
         <button type="button" class="btn btn-link" (click)="openMenuPage('myCards')" >Mes cartes</button>
       </div>
-      <div class="item-nav">
+      <div class="item-nav" *ngIf="isConnected">
         <button type="button" class="btn btn-link" (click)="openMenuPage('profil')" >Profil</button>
       </div>
-      <div class="item-nav">
+      <div class="item-nav" *ngIf="!isConnected">
         <button type="button" class="btn btn-link" (click)="openMenuPage('signup')" >S'inscrire</button>
       </div>
-      <div class="item-nav">
+      <div class="item-nav" *ngIf="isConnected">
         <button type="button" class="btn btn-link" (click)="disconnect()">Se déconnecter</button>
       </div>
       <div class="bottom-nav">

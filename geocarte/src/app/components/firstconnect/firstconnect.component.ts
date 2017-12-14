@@ -1,6 +1,7 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatFormField} from '@angular/material';
 import { FirstconnectService } from './firstconnect.service';
+import StorageTool from '../../utils/storageTool';
 
 /**
  * @title Dialog Overview
@@ -9,18 +10,26 @@ import { FirstconnectService } from './firstconnect.service';
   selector: 'app-modal-component',
   templateUrl: './firstconnect.component.html',
   styleUrls: ['./firstconnect.component.css'],
-  providers: [FirstconnectService],
-
+  providers: [FirstconnectService]
 })
-export class ModalComponent {
+export class ModalComponent implements OnInit {
 
   openSignup: boolean;
-  users: User[] = new Array();
-  identifiant = '';
+  @Input() isConnected: boolean;
+  @Input() navOpened: boolean;
+  user: User;
+  login = '';
   password = '';
 
   constructor(public dialog: MatDialog, private firstconnectService: FirstconnectService) {
-    this.openDialog();
+  }
+
+  ngOnInit() {
+    if (!StorageTool.isEmpty()) {
+      this.isConnected = true;
+    } else {
+      this.openDialog();
+    }
   }
 
   openDialog(): void {
@@ -34,18 +43,17 @@ export class ModalComponent {
         if (result === true) {
           this.openSignup = result;
         } else {
-          this.identifiant = result.identifiant;
+          this.login = result.login;
           this.password = result.password;
-          console.log(this.password);
+          this.firstconnectService.getUser(this.login, this.password).then(data => {
+            this.user = data;
+            if (this.user !== null) {
+              StorageTool.setIdUtilisateur(this.user.id);
+              this.isConnected = true;
+            }
+          });
         }
       }
-      /*
-      this.openSignup = result;
-      let datas = this.firstconnectService.getAllUsers().then(data => {
-        this.users = data;
-        console.log(this.users);
-      });
-      */
     });
   }
 
@@ -60,7 +68,7 @@ export class ModalTemplateComponent {
 
   openSignup = false;
   password = '';
-  identifiant = '';
+  login = '';
 
   constructor(
     public dialogRef: MatDialogRef<ModalTemplateComponent>,
@@ -76,7 +84,7 @@ export class ModalTemplateComponent {
   }
 
   submitLogIn() {
-    let data = {password : this.password, identifiant : this.identifiant};
+    let data = {password : this.password, login : this.login};
 
     this.dialogRef.close(data);
   }
