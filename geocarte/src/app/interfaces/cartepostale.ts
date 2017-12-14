@@ -1,5 +1,5 @@
 // just an interface for type safety.
-interface Marker {
+interface CartePostale {
   lat: number;
   lng: number;
   draggable?: boolean;

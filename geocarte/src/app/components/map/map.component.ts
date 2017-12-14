@@ -1,13 +1,17 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {HttpClient} from "@angular/common/http";
+import {HeaderService} from "../../header/header.service";
+import {MapService} from "./map.service";
 declare let google: any;
 
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  styleUrls: ['./map.component.css'],
+  providers: [MapService],
+
 })
 export class MapComponent implements OnInit {
 
@@ -18,7 +22,7 @@ export class MapComponent implements OnInit {
 
   lastAdressCliqued = '';
 
-  markers: Marker[] = [
+  cartePostale: CartePostale[] = [
     {
       lat: 48.1246539,
       lng: -1.652399100000025,
@@ -31,11 +35,9 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllMarkers();
+    this.getCartes();
   }
 
-  getAllMarkers(){
-  }
 
   clickedMarker() {
     const dialogRef = this.dialog.open(CardTemplateComponent, {
@@ -45,7 +47,7 @@ export class MapComponent implements OnInit {
     });
   }
   mapDoubleClicked($event) {
-    this.markers.push({
+    this.cartePostale.push({
       lat: $event.coords.lat,
       lng: $event.coords.lng,
       icon: 'blue'
@@ -62,8 +64,15 @@ export class MapComponent implements OnInit {
   // On enlève les markers si trop de zoom
   zoomChange($event){
     if($event > 13){
-      this.markers = [];
+      this.cartePostale = [];
     }
+    if($event < 13){
+      this.getCartes();
+    }
+  }
+
+  getCartes(){
+
   }
 
   getGeoLocation(lat: number, lng: number) {
