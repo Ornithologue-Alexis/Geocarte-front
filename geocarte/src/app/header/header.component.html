@@ -6,9 +6,9 @@
     <div class="col-6 filter-input">
       <i class="fa fa-building"></i>
       <mat-form-field>
-        <input matInput placeholder="Commune" [matAutocomplete]="commune" [formControl]="communeCtrl">
+        <input  matInput placeholder="Commune" [matAutocomplete]="commune" [formControl]="communeCtrl">
         <mat-autocomplete #commune="matAutocomplete">
-          <mat-option *ngFor="let commune of filteredCommunes | async" [value]="commune.nom">
+          <mat-option  *ngFor="let commune of filteredCommunes | async" [value]="commune.nom">
             <span>{{ commune.nom }}</span>
           </mat-option>
         </mat-autocomplete>
@@ -27,7 +27,7 @@
       </mat-form-field>
     </div>
     <div class="col-6 filter-input">
-      <i class="fa fa-university"></i>
+      <i class="fa fa-users"></i>
       <mat-form-field>
         <input matInput placeholder="Editeur" [matAutocomplete]="editeur"
                [formControl]="editeurCtrl">
@@ -39,19 +39,19 @@
       </mat-form-field>
     </div>
     <div class="col-6 filter-input">
-      <i class="fa fa-university"></i>
+      <i class="fa fa-comments"></i>
       <mat-form-field>
-        <input matInput placeholder="Légende" [matAutocomplete]="typeMonument"
-               [formControl]="typeMonumentCtrl">
-        <mat-autocomplete #typeMonument="matAutocomplete">
-          <mat-option *ngFor="let typemonument of filteredTypeMonuments | async" [value]="typemonument.libelle">
-            <span>{{ typemonument.libelle }}</span>
+        <input matInput placeholder="Légende" [matAutocomplete]="legende"
+               [formControl]="legendeCtrl">
+        <mat-autocomplete #legende="matAutocomplete">
+          <mat-option *ngFor="let legende of filteredLegende | async" [value]="legende">
+            <span>{{ legende }}</span>
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
     </div>
     <div class="col-12 button-submit">
-      <button (click)="getResult()" class=""><i class="fa fa-search"></i></button>
+      <button (click)="search()" class=""><i class="fa fa-search"></i></button>
     </div>
   </form>
   <div *ngIf="filter === true" class="col-12 hide-filter">

@@ -1,5 +1,5 @@
 // just an interface for type safety.
-interface CartePostale {
+class CartePostale {
   id?: VarianteCarte;
   idCarte: VarianteCarte;
   codeEditeur?: number;

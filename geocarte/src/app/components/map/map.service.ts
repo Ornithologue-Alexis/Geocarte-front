@@ -28,6 +28,12 @@ export class MapService {
       .catch(this.handleError);
   }
 
+  createCard(cardData: CartePostale): Promise<CartePostale> {
+    return this.http.post(this.baseUrl + '/varianteCarte/', cardData)
+      .toPromise().then(response => response.json() as CartePostale)
+      .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('Some error occured', error);
     return Promise.reject(error.message || error);

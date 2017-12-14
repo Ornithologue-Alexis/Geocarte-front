@@ -37,16 +37,26 @@ export class HeaderService {
   }
 
   getLegendes(): Promise<string[]> {
-    return this.http.get(this.baseUrl + '/legende/')
+    return this.http.get(this.baseUrl + '/legendes/')
       .toPromise()
       .then(response => response.json() as Editeur[])
       .catch(this.handleError);
   }
 
+  getLegendeWithBeginning(debut : string): Promise<string[]> {
+    console.log(this.baseUrl + '/legendes/?legende=' + debut);
+    return this.http.get(this.baseUrl + '/legendes/?legende=' + debut)
+      .toPromise()
+      .then(response => response.json() as Editeur[])
+      .catch(this.handleError);
+  }
+
+
   private handleError(error: any): Promise<any> {
     console.error('Some error occured', error);
     return Promise.reject(error.message || error);
   }
+
 
 
 }

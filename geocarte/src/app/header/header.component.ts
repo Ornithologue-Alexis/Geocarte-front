@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
 
 
   filter: boolean = false;
+  legendeValue:string;
 
   communeCtrl: FormControl;
   filteredCommunes: Observable<any[]>;
@@ -32,14 +33,14 @@ export class HeaderComponent implements OnInit {
 
   legendeCtrl: FormControl;
   filteredLegende: Observable<any[]>;
-  legendes: string[];
+  legendes: string[] = [];
 
 
   ngOnInit(): void {
     // this.getCommunes();
     this.getTypeMonument();
     this.getEditeur();
-    // this.getLegendes();
+    this.getLegendes();
   }
 
   constructor(private headerService: HeaderService) {
@@ -58,7 +59,7 @@ export class HeaderComponent implements OnInit {
       .map(editeur => editeur ? this.filterEditeur(editeur) : this.editeurs.slice());
     this.filteredLegende = this.legendeCtrl.valueChanges
       .startWith(null)
-      .map(legende => legende ? this.filterEditeur(legende) : this.legendes.slice());
+      .map(legende => legende ? this.filtrerLegende(legende) : this.legendes.slice());
   }
 
   private getCommunes(): void {
@@ -81,6 +82,7 @@ export class HeaderComponent implements OnInit {
 
   private getLegendes() {
     let datas = this.headerService.getLegendes().then(data => {
+      console.log(data);
       this.legendes = data;
     });
   }
@@ -100,9 +102,36 @@ export class HeaderComponent implements OnInit {
       editeur.nom.toLowerCase().indexOf(libelle.toLowerCase()) === 0);
   }
 
+  filtrerLegende(libelle : string){
+    return this.legendes.filter(legende =>
+      legende.toLowerCase().indexOf(libelle.toLowerCase()) === 0);
+  }
+
   swapFilter() {
     this.filter = !this.filter;
   }
+
+  changement(event){
+    if(event.srcElement.value.length >= 2){
+
+    }
+  }
+
+  // legendTrigger(event){
+  //   if(event.srcElement.value.length >= 2){
+  //       this.headerService.getLegendeWithBeginning(event.srcElement.value).then(data => {
+  //         this.legendes = data;
+  //         console.log(data);
+  //       });
+  //   }
+  // }
+
+  // search(){
+  //   console.log(this.legendeValue);
+  //   this.headerService.searchByLegende().then(data => {
+  //     this.legendes = data;
+  //   });
+  // }
 
 
 }

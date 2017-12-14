@@ -3,6 +3,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {HttpClient} from "@angular/common/http";
 import {HeaderService} from "../../header/header.service";
 import {MapService} from "./map.service";
+import {NgForm} from "@angular/forms";
 declare let google: any;
 
 
@@ -141,16 +142,24 @@ export class CardTemplateComponent {
 @Component({
   selector: 'app-modal-template',
   templateUrl: './cardadd.modal.template.html',
-  styleUrls: ['./cardadd.modal.template.css']
+  styleUrls: ['./cardadd.modal.template.css'],
+  providers: [MapService],
+
 })
 export class CardAddTemplateComponent {
+
   constructor(
     public dialogRef: MatDialogRef<CardTemplateComponent>,
+    private mapService: MapService,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
 
     onNoClick(): void {
       this.dialogRef.close();
+    }
+
+    createCard(cardForm: NgForm){
+
     }
 
 }
