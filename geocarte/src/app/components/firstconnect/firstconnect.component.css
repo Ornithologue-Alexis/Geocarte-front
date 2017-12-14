@@ -62,3 +62,29 @@ p.p-connect{
   cursor: pointer;
 }
 
+.button-login button {
+  position: absolute;
+  top: 1%;
+  left: 9%;
+  background-color: rgba(31, 31, 71, 0.8);
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  z-index: 100;
+}
+
+.button-login button > i{
+  font-size: 25px;
+}
+
+.button-login button:hover{
+  background-color: white;
+  color: rgba(31, 31, 71, 0.8);
+  border: none;
+  cursor: pointer;
+}
+
+
+
