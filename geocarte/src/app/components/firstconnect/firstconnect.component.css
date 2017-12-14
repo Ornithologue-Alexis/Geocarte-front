@@ -19,8 +19,12 @@ div.header-modal i.close-icon{
 p.p-connect{
   color: #6e6e6e;
 }
+.connect-form > * {
+  width: 100%;
+}
 .connect-form{
   text-align:center;
+  width: 100%;
 }
 .connect-form i{
   color: #3f51b5;

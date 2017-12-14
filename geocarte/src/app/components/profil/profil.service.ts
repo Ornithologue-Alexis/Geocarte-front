@@ -1,23 +1,23 @@
 import {Http} from '@angular/http';
-import {Inject, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 
 /**
  * @title Dialog Overview
  */
 
 @Injectable()
-export class FirstconnectService {
+export class ProfilService {
 
   baseUrl = 'http://localhost:8080';
 
   constructor(private http: Http) {
   }
 
-  getAllUsers(): Promise<User[]> {
+  getUserInfo(): Promise<User> {
 
     return this.http.get(this.baseUrl + '/utilisateur/')
       .toPromise()
-      .then(response => response.json() as User[])
+      .then(response => response.json() as User)
       .catch(this.handleError);
   }
 

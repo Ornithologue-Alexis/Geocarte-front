@@ -15,6 +15,9 @@ import { FirstconnectService } from './firstconnect.service';
 export class ModalComponent {
 
   openSignup: boolean;
+  users: User[] = new Array();
+  identifiant = '';
+  password = '';
 
   constructor(public dialog: MatDialog, private firstconnectService: FirstconnectService) {
     this.openDialog();
@@ -27,8 +30,22 @@ export class ModalComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if (typeof result !== 'undefined') {
+        if (result === true) {
+          this.openSignup = result;
+        } else {
+          this.identifiant = result.identifiant;
+          this.password = result.password;
+          console.log(this.password);
+        }
+      }
+      /*
       this.openSignup = result;
-      this.firstconnectService.getAllUsers();
+      let datas = this.firstconnectService.getAllUsers().then(data => {
+        this.users = data;
+        console.log(this.users);
+      });
+      */
     });
   }
 
@@ -42,6 +59,8 @@ export class ModalComponent {
 export class ModalTemplateComponent {
 
   openSignup = false;
+  password = '';
+  identifiant = '';
 
   constructor(
     public dialogRef: MatDialogRef<ModalTemplateComponent>,
@@ -54,6 +73,12 @@ export class ModalTemplateComponent {
   openSignupPanel() {
     this.openSignup = true;
     this.dialogRef.close(this.openSignup);
+  }
+
+  submitLogIn() {
+    let data = {password : this.password, identifiant : this.identifiant};
+
+    this.dialogRef.close(data);
   }
 
 }
