@@ -9,24 +9,24 @@
     <div>
       <p class="p-connect">Connectez-vous afin d'accéder à toutes les fonctionnalités du site ( ajout de cartes, informations supplémentaires...</p>
     </div>
-    <mat-form-field class="connect-form">
-      <div class="form-group login-form">
-        <i class="fa fa-user col-1"></i>
-        <input matInput tabindex="1" placeholder="Identifiant">
-      </div>
-      <div class="form-group password-form">
-        <i class="fa fa-lock col-1"></i>
-        <input matInput tabindex="1" placeholder="Mot de passe">
-      </div>
+    <div class="connect-form">
+      <mat-form-field>
+        <input matInput tabindex="1" [(ngModel)]="identifiant">
+        <mat-placeholder><i class="fa fa-user"></i> <b> Identifiant</b></mat-placeholder>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput tabindex="1" [(ngModel)]="password">
+        <mat-placeholder><i class="fa fa-lock"></i> <b> Password</b></mat-placeholder>
+      </mat-form-field>
       <div class="form-group button-form">
-        <button type="submit" class="btn connect-button">Se connecter</button>
+        <button type="submit" class="btn connect-button" (click)="submitLogIn()">Se connecter</button>
       </div>
-    </mat-form-field>
-
+    </div>
     <div class="links-connect d-flex justify-content-between">
       <button class="subscribe pull-left p-6" (click)="openSignupPanel()">S'inscrire maintenant</button>
       <a class="forgot-password pull-right p-6">Mot de passe oublié ?</a>
     </div>
   </div>
 </div>
+
 
