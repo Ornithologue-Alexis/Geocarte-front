@@ -1,7 +1,11 @@
 // just an interface for type safety.
 interface CartePostale {
-  lat: number;
-  lng: number;
-  draggable?: boolean;
-  icon?: string;
+  id?: CartePostale;
+  codeEditeur?: number;
+  editeur?: Editeur;
+  monuments?: Monument;
+  commune?: Commune;
+  lat?: number;
+  lng?: number;
+  icon: string;
 }

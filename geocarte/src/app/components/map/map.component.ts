@@ -22,14 +22,7 @@ export class MapComponent implements OnInit {
 
   lastAdressCliqued = '';
 
-  cartePostale: CartePostale[] = [
-    {
-      lat: 48.1246539,
-      lng: -1.652399100000025,
-      draggable: false,
-      icon: 'red'
-    },
-  ];
+  cartePostale: CartePostale[] = [];
 
   constructor(public dialog: MatDialog, private mapService: MapService) {
   }
@@ -40,12 +33,29 @@ export class MapComponent implements OnInit {
 
   getCartes(){
     let datas = this.mapService.getCartePostale().then(data => {
-      this.cartePostale = data;
+      for(let i of data){
+        let carteA = i.id.cartePostale;
+        this.cartePostale.push({
+            lat: carteA.commune.latitude,
+            lng: carteA.commune.longitude,
+            icon: 'red'
+          }
+        )
+      }
     });
-
-    console.log(this.cartePostale)
   }
 
+  // On enlève les markers si trop de zoom
+  zoomChange($event){
+    if($event > 13){
+      this.cartePostale = [];
+    }
+    if($event < 13){
+      if(this.cartePostale === []){
+        this.getCartes();
+      }
+    }
+  }
 
   clickedMarker() {
     const dialogRef = this.dialog.open(CardTemplateComponent, {
@@ -67,16 +77,6 @@ export class MapComponent implements OnInit {
       width: '75%',
       height: '50%'
     });
-  }
-
-  // On enlève les markers si trop de zoom
-  zoomChange($event){
-    if($event > 13){
-      this.cartePostale = [];
-    }
-    if($event < 13){
-      this.getCartes();
-    }
   }
 
 

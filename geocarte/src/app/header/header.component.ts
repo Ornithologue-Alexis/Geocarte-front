@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
     // this.getCommunes();
     this.getTypeMonument();
     this.getEditeur();
-    this.getLegendes();
+    // this.getLegendes();
   }
 
   constructor(private headerService: HeaderService) {

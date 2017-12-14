@@ -2,6 +2,7 @@
 interface Commune {
   insee: number;
   nom: string;
-  lat: number;
-  lng: number;
+  latitude: number;
+  longitude: number;
+  departement: Departement[];
 }

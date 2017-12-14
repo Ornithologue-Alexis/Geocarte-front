@@ -14,10 +14,10 @@ export class MapService {
 
   constructor(private http: Http) {}
 
-  getCartePostale():  Promise<CartePostale[]> {
+  getCartePostale():  Promise<VarianteCarte[]> {
     return this.http.get(this.baseUrl + '/varianteCarte/')
       .toPromise()
-      .then(response => response.json() as Commune[])
+      .then(response => response.json() as VarianteCarte[])
       .catch(this.handleError);
   }
   private handleError(error: any): Promise<any> {
