@@ -22,8 +22,31 @@ export class HeaderService {
   }
 
 
+  getTypeMonuments():  Promise<TypeMonument[]> {
+    return this.http.get(this.baseUrl + '/typeMonument/')
+      .toPromise()
+      .then(response => response.json() as TypeMonument[])
+      .catch(this.handleError);
+  }
+
+  getEditeurs(): Promise<Editeur[]> {
+    return this.http.get(this.baseUrl + '/editeur/')
+      .toPromise()
+      .then(response => response.json() as Editeur[])
+      .catch(this.handleError);
+  }
+
+  getLegendes(): Promise<string[]> {
+    return this.http.get(this.baseUrl + '/legende/')
+      .toPromise()
+      .then(response => response.json() as Editeur[])
+      .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('Some error occured', error);
     return Promise.reject(error.message || error);
   }
+
+
 }

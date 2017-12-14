@@ -6,12 +6,46 @@
     <div class="col-6 filter-input">
       <i class="fa fa-building"></i>
       <mat-form-field>
-        <input matInput placeholder="Commune"[matAutocomplete]="auto" [formControl]="communeCtrl">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let commune of filteredCommunes | async" [value]="commune.name">
-            <img style="vertical-align:middle;" aria-hidden src="{{commune.flag}}" height="25" />
-            <span>{{ commune.name }}</span> |
-            <small>Population: {{commune.population}}</small>
+        <input matInput placeholder="Commune" [matAutocomplete]="commune" [formControl]="communeCtrl">
+        <mat-autocomplete #commune="matAutocomplete">
+          <mat-option *ngFor="let commune of filteredCommunes | async" [value]="commune.nom">
+            <span>{{ commune.nom }}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <div class="col-6 filter-input">
+      <i class="fa fa-university"></i>
+      <mat-form-field>
+        <input matInput placeholder="Type de monument" [matAutocomplete]="typeMonument"
+               [formControl]="typeMonumentCtrl">
+        <mat-autocomplete #typeMonument="matAutocomplete">
+          <mat-option *ngFor="let typemonument of filteredTypeMonuments | async" [value]="typemonument.libelle">
+            <span>{{ typemonument.libelle }}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <div class="col-6 filter-input">
+      <i class="fa fa-university"></i>
+      <mat-form-field>
+        <input matInput placeholder="Editeur" [matAutocomplete]="editeur"
+               [formControl]="editeurCtrl">
+        <mat-autocomplete #editeur="matAutocomplete">
+          <mat-option *ngFor="let editeur of filteredEditeur | async" [value]="editeur.nom">
+            <span>{{ editeur.nom }}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <div class="col-6 filter-input">
+      <i class="fa fa-university"></i>
+      <mat-form-field>
+        <input matInput placeholder="Légende" [matAutocomplete]="typeMonument"
+               [formControl]="typeMonumentCtrl">
+        <mat-autocomplete #typeMonument="matAutocomplete">
+          <mat-option *ngFor="let typemonument of filteredTypeMonuments | async" [value]="typemonument.libelle">
+            <span>{{ typemonument.libelle }}</span>
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
