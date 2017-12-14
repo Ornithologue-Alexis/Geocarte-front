@@ -23,6 +23,7 @@ export class MapComponent implements OnInit {
   lastAdressCliqued = '';
 
   cartePostale: CartePostale[] = [];
+  lastCardCliqued: VarianteCarte;
 
   constructor(public dialog: MatDialog, private mapService: MapService) {
   }
@@ -36,13 +37,30 @@ export class MapComponent implements OnInit {
       for(let i of data){
         let carteA = i.id.cartePostale;
         this.cartePostale.push({
+            id: i.id,
+            idCarte: carteA.id,
             lat: carteA.commune.latitude,
             lng: carteA.commune.longitude,
-            icon: 'red'
+            nomCommune: carteA.commune.nom,
+            nomEditeur: carteA.editeur.nom,
+            legende: carteA.legende,
+            nomMonument: carteA.monuments.nom,
+            icon: 'red',
           }
         )
       }
     });
+  }
+
+  getCarteById(idVariante:number, idCarte){
+    let datas = this.mapService.getCarteById(idVariante, idCarte).then(data => {
+        Object.assign(this.lastCardCliqued, {
+          id: data.id.id,
+          cartePostale: data.cartePostale,
+          legende: data.legende
+        });
+    })
+
   }
 
   // On enlève les markers si trop de zoom
@@ -57,19 +75,24 @@ export class MapComponent implements OnInit {
     }
   }
 
-  clickedMarker() {
-    const dialogRef = this.dialog.open(CardTemplateComponent, {
-      panelClass: 'myapp-no-padding-dialog',
-      width: '75%',
-      height: '50%'
+  clickedMarker(idVariante: number, idCarte: number) {
+    let card: VarianteCarte;
+    let datas = this.mapService.getCarteById(idVariante, idCarte).then(data => {
+      card =  {
+        id: data.id,
+        cartePostale: data.cartePostale,
+        legende: data.legende
+      }
+      const dialogRef = this.dialog.open(CardTemplateComponent, {
+        data: { cartePostal : card},
+        panelClass: 'myapp-no-padding-dialog',
+        width: '75%',
+        height: '50%'
+      });
     });
   }
+
   mapDoubleClicked($event) {
-    this.cartePostale.push({
-      lat: $event.coords.lat,
-      lng: $event.coords.lng,
-      icon: 'blue'
-    });
     this.getGeoLocation($event.coords.lat, $event.coords.lng);
     const dialogRef = this.dialog.open(CardAddTemplateComponent, {
       data: { lastAdress: this.lastAdressCliqued},
@@ -109,6 +132,7 @@ export class CardTemplateComponent {
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {
+    console.log(this.data);
     this.dialogRef.close();
   }
 

@@ -1,7 +1,7 @@
 <div id="connect-modal">
   <div class="header-modal d-flex justify-content-between">
     <div class=""></div>
-    <span class="">La caserne de la tour d'Auvergne</span>
+    <span class="">Carte n° {{this.data.cartePostal.id.cartePostale.id}}</span>
     <i class="fa fa-close close-icon"(click)="onNoClick()"></i>
   </div>
 
@@ -13,15 +13,15 @@
       <div class="legend col-4">
         <div class="row avatar-row">
           <img class="avatar rounded-circle" src="../../../assets/img/profil.png"/>
-          <span class="author">Antoine Ravet</span>
+          <span class="author">{{this.data.cartePostal.id.cartePostale.editeur.nom}}</span>
         </div>
         <div class="card">
           <div class="card-header">
-            Quimper
+            {{this.data.cartePostal.id.cartePostale.commune.nom}}
           </div>
           <div class="card-body">
             <blockquote class="blockquote mb-0">
-              <p>"La caserne de la tour d'Auvergne"</p>
+              <p>{{this.data.cartePostal.legende}}</p>
               <footer class="blockquote-footer">
                 Année <cite title="Source Title">1978</cite>
               </footer>

@@ -35,3 +35,7 @@ span.author{
   color: #3f51b5;
   padding-left: 10px;
 }
+
+.card-header{
+  text-transform: capitalize;
+}
