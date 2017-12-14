@@ -2,22 +2,19 @@
   <div *ngIf="filter === false" class="col-12 hide-filter">
     <i (click)="swapFilter()" class="fa fa-caret-down"></i>
   </div>
-  <form *ngIf="filter" class="form-inline container-fluid">
+  <form *ngIf="filter === true" class="form-inline container-fluid">
     <div class="col-6 filter-input">
       <i class="fa fa-building"></i>
-      <input class="form-control" type="text" placeholder="Filtrez par ville">
-    </div>
-    <div class="col-6 filter-input">
-      <i class="fa fa-university"></i>
-      <input class="form-control" type="text" placeholder="Filtrez par monument">
-    </div>
-    <div class="col-6 filter-input">
-      <i class="fa fa-user"></i>
-      <input class="form-control" type="text" placeholder="Filtrez par éditeur">
-    </div>
-    <div class="col-6 filter-input">
-      <i class="fa fa-commenting"></i>
-      <input class="form-control" type="text" placeholder="Recherchez une légende">
+      <mat-form-field>
+        <input matInput placeholder="Commune"[matAutocomplete]="auto" [formControl]="communeCtrl">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let commune of filteredCommunes | async" [value]="commune.name">
+            <img style="vertical-align:middle;" aria-hidden src="{{commune.flag}}" height="25" />
+            <span>{{ commune.name }}</span> |
+            <small>Population: {{commune.population}}</small>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
     </div>
     <div class="col-12 button-submit">
       <button class=""><i class="fa fa-search"></i></button>

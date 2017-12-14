@@ -1,25 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
 import {CardAddTemplateComponent, CardTemplateComponent, MapComponent} from './components/map/map.component';
 import { NavComponent } from './components/nav/nav.component';
 import { MycardsComponent } from './components/mycards/mycards.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { SignupComponent } from './components/signup/signup.component';
-
 import { AgmCoreModule } from '@agm/core';
-import {MatSidenavModule} from '@angular/material';
+import {MatInputModule, MatSidenavModule} from '@angular/material';
 import {MatDialogModule} from '@angular/material';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatAutocompleteModule} from '@angular/material';
 import {ModalComponent, ModalTemplateComponent} from './components/firstconnect/firstconnect.component';
-
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HowtoComponent, HowToTemplateComponent} from './components/howto/howto.component';
 import { HeaderComponent } from './header/header.component';
-
-
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -36,13 +34,22 @@ import { HeaderComponent } from './header/header.component';
     HowToTemplateComponent,
     HeaderComponent,
     CardAddTemplateComponent,
-
   ],
   imports: [
     BrowserModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    BrowserModule,
     MatSidenavModule,
     MatDialogModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
+    HttpModule,
     NgbModule.forRoot(),
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({
@@ -50,7 +57,7 @@ import { HeaderComponent } from './header/header.component';
     })
   ],
   entryComponents: [ModalTemplateComponent, CardTemplateComponent, HowToTemplateComponent, CardAddTemplateComponent],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [HttpClientModule, HttpModule],
+  bootstrap: [AppComponent, HeaderComponent]
 })
 export class AppModule { }

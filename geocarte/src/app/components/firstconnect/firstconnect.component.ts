@@ -29,7 +29,6 @@ export class ModalComponent {
     dialogRef.afterClosed().subscribe(result => {
       this.openSignup = result;
       this.firstconnectService.getAllUsers();
-      console.log(result);
     });
   }
 

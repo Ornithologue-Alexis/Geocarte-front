@@ -18,7 +18,7 @@ export class MapComponent implements OnInit {
 
   lastAdressCliqued = '';
 
-  markers: marker[] = [
+  markers: Marker[] = [
     {
       lat: 48.1246539,
       lng: -1.652399100000025,
@@ -35,9 +35,6 @@ export class MapComponent implements OnInit {
   }
 
   getAllMarkers(){
-    this.http.get('http://localhost:8080/cartePostale/').subscribe(data => {
-      console.log(data);
-    });
   }
 
   clickedMarker() {

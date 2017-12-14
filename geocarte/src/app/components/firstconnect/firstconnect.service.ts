@@ -13,7 +13,6 @@ export class FirstconnectService {
 
   getAllUsers() {
     this.http.get('http://localhost:8080/utilisateur/').subscribe(data => {
-      console.log(data);
     });
   }
 
