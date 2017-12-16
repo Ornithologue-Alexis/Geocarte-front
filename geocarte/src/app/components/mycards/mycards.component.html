@@ -1,37 +1,8 @@
 <div class="user_name"><p>Alexis Renault</p></div>
 <div class="diaporama" *ngIf="!singleCard">
-  <div class="cartePostale" (click)="openSingleCard()">
-    <img src="../../assets/img/villard-0070-n1-1.jpg"/>
-    <div class="overlay">
-      <div class="text"><i class="fa fa-search" aria-hidden="true"></i></div>
-    </div>
-  </div>
-  <div class="cartePostale" (click)="openSingleCard()">
-    <img src="../../assets/img/villard-0070-n1-2.jpg"/>
-    <div class="overlay">
-      <div class="text"><i class="fa fa-search" aria-hidden="true"></i></div>
-    </div>
-  </div>
-  <div class="cartePostale" (click)="openSingleCard()">
-    <img src="../../assets/img/villard-0070-n1-3.jpg"/>
-    <div class="overlay">
-      <div class="text"><i class="fa fa-search" aria-hidden="true"></i></div>
-    </div>
-  </div>
-  <div class="cartePostale" (click)="openSingleCard()">
-    <img src="../../assets/img/villard-0070-n2.jpg"/>
-    <div class="overlay">
-      <div class="text"><i class="fa fa-search" aria-hidden="true"></i></div>
-    </div>
-  </div>
-  <div class="cartePostale" (click)="openSingleCard()">
-    <img src="../../assets/img/villard-0675-n1-1.jpg"/>
-    <div class="overlay">
-      <div class="text"><i class="fa fa-search" aria-hidden="true"></i></div>
-    </div>
-  </div>
-  <div class="cartePostale" (click)="openSingleCard()">
-    <img src="../../assets/img/villard-0675-n1-2.jpg"/>
+  <div class="cartePostale" *ngFor="let carte of cartePostales" (click)="openSingleCard(carte)">
+    <img *ngIf="carte.face !== null" src="../../assets/img/{{carte.face}}"/>
+    <img *ngIf="carte.face === null" src="../../assets/img/waron-1349.jpg"/>
     <div class="overlay">
       <div class="text"><i class="fa fa-search" aria-hidden="true"></i></div>
     </div>
@@ -44,16 +15,19 @@
         <span><i class="fa fa-chevron-left"></i></span>
         <span>Retour</span>
       </div>
-      <img class="singlePostCard" src={{cardUrl}}/>
+      <img class="singlePostCard" src="../../assets/img/{{cardUrl}}"/>
       <div class="cardInfosText">
         <div>
-          <p>Carte postale</p>
+          <p>Commune</p>
+          <p>{{commune}}</p>
         </div>
         <div>
           <p>Editeur</p>
+          <p>{{editor}}</p>
         </div>
         <div>
           <p>Légende</p>
+          <p>{{cardLegend}}</p>
         </div>
       </div>
     </div>

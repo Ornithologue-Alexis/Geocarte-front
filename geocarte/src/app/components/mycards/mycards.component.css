@@ -71,6 +71,8 @@
 
 .singlePostCard {
   width : 59%;
+  height: 25rem;
+  object-fit: cover;
   display : inline-block;
   vertical-align:top;
   padding-right : 1.3rem;

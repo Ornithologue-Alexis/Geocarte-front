@@ -4,4 +4,5 @@ interface VarianteCarte {
   cartePostale: CartePostale;
   legende: string;
   legende2?: string;
+  face?: string;
 }
