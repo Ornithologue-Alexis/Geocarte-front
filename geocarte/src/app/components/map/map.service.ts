@@ -10,7 +10,7 @@ import { Headers, Http } from '@angular/http';
 @Injectable()
 export class MapService {
 
-  private baseUrl = 'http://localhost:8080';
+  private baseUrl = 'http://localhost:8080/api';
 
   constructor(private http: Http) {}
 
