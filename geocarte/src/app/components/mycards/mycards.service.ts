@@ -13,12 +13,11 @@ export class MycardsService {
   constructor(private http: Http) {
   }
 
-  /*
-  getUserInfo(): Promise<User> {
+  getUserCartes(id: string): Promise<any> {
 
-    return this.http.get(this.baseUrl + '/utilisateur/')
+    return this.http.get(this.baseUrl + '/carteUtilisateur/' + id)
       .toPromise()
-      .then(response => response.json() as User)
+      .then(response => response.json())
       .catch(this.handleError);
   }
 
@@ -26,6 +25,5 @@ export class MycardsService {
     console.error('Some error occured', error);
     return Promise.reject(error.message || error);
   }
-  */
 
 }
