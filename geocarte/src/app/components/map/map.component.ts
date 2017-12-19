@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {HeaderService} from "../../header/header.service";
 import {MapService} from "./map.service";
 import {NgForm} from "@angular/forms";
+import {DomSanitizer} from "@angular/platform-browser";
 declare let google: any;
 
 
@@ -37,10 +38,10 @@ export class MapComponent implements OnInit {
       for(let i of data){
         let carteA = i.id.cartePostale;
         this.cartesPostales.push({
-            id: i.id,
+            id: i.id.id,
             idCarte: carteA.id,
-            lat: carteA.commune.latitude,
-            lng: carteA.commune.longitude,
+            lat: carteA.latitude,
+            lng: carteA.longitude,
             nomCommune: carteA.commune.nom,
             nomEditeur: carteA.editeur.nom,
             legende: carteA.legende,
@@ -65,27 +66,13 @@ export class MapComponent implements OnInit {
 
   // On enlève les markers si trop de zoom
   zoomChange($event){
-    if($event > 13){
-      this.cartesPostales = [];
-    }
-    if($event < 13){
-      if(this.cartesPostales === []){
-        this.getCartes();
-      }
-    }
   }
 
   clickedMarker(idVariante: number, idCarte: number) {
     let card: VarianteCarte;
     let datas = this.mapService.getCarteById(idVariante, idCarte).then(data => {
-      console.log(data);
-      card =  {
-        id: data.id,
-        cartePostale: data.cartePostale,
-        legende: data.legende
-      }
       const dialogRef = this.dialog.open(CardTemplateComponent, {
-        data: { cartePostal : card},
+        data: { cartePostal : data},
         panelClass: 'myapp-no-padding-dialog',
         width: '75%',
         height: '50%'
@@ -133,7 +120,7 @@ export class MapComponent implements OnInit {
 export class CardTemplateComponent {
   constructor(
     public dialogRef: MatDialogRef<CardTemplateComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private _sanitizer: DomSanitizer) { }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -155,9 +142,7 @@ export class CardAddTemplateComponent {
     private mapService: MapService,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-
     onNoClick(): void {
       this.dialogRef.close();
     }
-
 }

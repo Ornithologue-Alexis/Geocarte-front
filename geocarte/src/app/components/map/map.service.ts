@@ -22,7 +22,6 @@ export class MapService {
   }
 
   getCarteById(idVariante : number, idCarte):  Promise<VarianteCarte> {
-    console.log(this.baseUrl + '/varianteCarte/'+idCarte+'/'+idVariante);
     return this.http.get(this.baseUrl + '/varianteCarte/'+idCarte+'/'+idVariante)
       .toPromise()
       .then(response => response.json() as VarianteCarte)

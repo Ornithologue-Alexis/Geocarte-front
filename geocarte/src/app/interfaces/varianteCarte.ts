@@ -7,4 +7,8 @@ interface VarianteCarte {
   legende2?: string;
   face?: string;
   base64Photo?: string;
+  nomEditeur?: string;
+  nomCommune?: string;
+  latitude?: string;
+  longitude?: string;
 }

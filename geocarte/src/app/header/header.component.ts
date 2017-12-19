@@ -160,9 +160,26 @@ export class HeaderComponent implements OnInit {
   }
 
   search() {
+    this.cartesPostales = [];
     this.headerService.searchCartePostale(this.communeCtrl.value, this.typeMonumentCtrl.value, this.editeurCtrl.value, this.legendeCtrl.value).then(data => {
-      this.cartesPostales = data;
-      console.log(this.cartesPostales);
+      if(data != null){
+        for(let i of data){
+          let carteA = i.varianteCarte.id;
+          this.cartesPostales.push({
+              id: carteA.id,
+              idCarte: carteA.cartePostale.id,
+              lat: carteA.cartePostale.latitude,
+              lng: carteA.cartePostale.longitude,
+              nomCommune: carteA.cartePostale.commune.nom,
+              nomEditeur: carteA.cartePostale.editeur.nom,
+              legende: i.varianteCarte.legende,
+              nomMonument: carteA.cartePostale.monuments.nom,
+              base64Photo: i.base64Photo,
+              icon: 'red',
+            }
+          )
+        }
+      }
       const dialogRef = this.dialog.open(CardList, {
         data: {"cartesPostales": this.cartesPostales},
         panelClass: 'myapp-no-padding-dialog',
@@ -197,13 +214,14 @@ export class CardList {
     this.cartesPostales = data.cartesPostales;
   }
 
+
   openSingleCard(carte: VarianteCarte) {
     this.singleCard = true;
     this.cardUrl = carte.base64Photo;
-    this.cardLegend = carte.varianteCarte.legende;
-    this.cardLegendTwo = carte.varianteCarte.legende2;
-    this.editor = carte.varianteCarte.id.cartePostale.editeur.nom;
-    this.commune = carte.varianteCarte.id.cartePostale.commune.nom;
+    this.cardLegend = carte.legende;
+    this.cardLegendTwo = carte.legende2;
+    this.editor = carte.nomEditeur;
+    this.commune = carte.nomCommune;
   }
 
   closeSingleCard() {

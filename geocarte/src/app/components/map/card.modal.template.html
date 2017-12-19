@@ -1,26 +1,27 @@
 <div id="connect-modal">
   <div class="header-modal d-flex justify-content-between">
     <div class=""></div>
-    <span class="">Carte n° {{this.data.cartePostal.id.cartePostale.id}}</span>
+    <span class="">Carte n° {{this.data.cartePostal.varianteCarte.id.cartePostale.id}}</span>
     <i class="fa fa-close close-icon"(click)="onNoClick()"></i>
   </div>
   <div mat-dialog-content>
     <div class="row">
       <div class="img-card .col-sm-4	.col-md-4	.col-lg-4 col-6">
-        <img class="img-card rounded" src="../../../assets/img/test.jpg" alt="eglise jeanne d'arc"/>
+        <img  *ngIf="this.data.cartePostal.base64Photo === null"  class="image" src="../../../assets/img/notfound.jpg"/>
+        <img *ngIf="this.data.cartePostal.base64Photo" class="image" [src]="_sanitizer.bypassSecurityTrustResourceUrl('data:image/PNG;base64,' + this.data.cartePostal.base64Photo)" />
       </div>
       <div class="legend col-4">
         <div class="row avatar-row">
           <img class="avatar rounded-circle" src="../../../assets/img/profil.png"/>
-          <span class="author">{{this.data.cartePostal.id.cartePostale.editeur.nom}}</span>
+          <span class="author">{{this.data.cartePostal.varianteCarte.id.cartePostale.editeur.nom}}</span>
         </div>
         <div class="card">
           <div class="card-header">
-            {{this.data.cartePostal.id.cartePostale.commune.nom}}
+            {{this.data.cartePostal.varianteCarte.id.cartePostale.commune.nom}}
           </div>
           <div class="card-body">
             <blockquote class="blockquote mb-0">
-              <p>{{this.data.cartePostal.legende}}</p>
+              <p>{{this.data.cartePostal.varianteCarte.legende}}</p>
             </blockquote>
           </div>
         </div>
