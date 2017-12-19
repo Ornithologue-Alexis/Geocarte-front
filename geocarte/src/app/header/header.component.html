@@ -6,9 +6,9 @@
     <div class="col-6 filter-input">
       <i class="fa fa-building"></i>
       <mat-form-field>
-        <input  matInput placeholder="Commune" [matAutocomplete]="commune" [formControl]="communeCtrl">
-        <mat-autocomplete #commune="matAutocomplete">
-          <mat-option  *ngFor="let commune of filteredCommunes | async" [value]="commune.nom">
+        <input (keypress)="changementCommune($event)" matInput placeholder="Commune" [matAutocomplete]="commune" [formControl]="communeCtrl">
+        <mat-autocomplete #commune="matAutocomplete" [displayWith]="displayCommune.bind(this)">
+          <mat-option  *ngFor="let commune of filteredCommunes | async" [value]="commune.insee">
             <span>{{ commune.nom }}</span>
           </mat-option>
         </mat-autocomplete>
@@ -17,10 +17,9 @@
     <div class="col-6 filter-input">
       <i class="fa fa-university"></i>
       <mat-form-field>
-        <input matInput placeholder="Type de monument" [matAutocomplete]="typeMonument"
-               [formControl]="typeMonumentCtrl">
-        <mat-autocomplete #typeMonument="matAutocomplete">
-          <mat-option *ngFor="let typemonument of filteredTypeMonuments | async" [value]="typemonument.libelle">
+        <input matInput placeholder="Type de monument" [matAutocomplete]="typeMonument" [formControl]="typeMonumentCtrl">
+        <mat-autocomplete #typeMonument="matAutocomplete" [displayWith]="displayTypeMonument.bind(this)">
+          <mat-option *ngFor="let typemonument of filteredTypeMonuments | async" [value]="typemonument.id">
             <span>{{ typemonument.libelle }}</span>
           </mat-option>
         </mat-autocomplete>
@@ -31,8 +30,8 @@
       <mat-form-field>
         <input matInput placeholder="Editeur" [matAutocomplete]="editeur"
                [formControl]="editeurCtrl">
-        <mat-autocomplete #editeur="matAutocomplete">
-          <mat-option *ngFor="let editeur of filteredEditeur | async" [value]="editeur.nom">
+        <mat-autocomplete #editeur="matAutocomplete" [displayWith]="displayEditeur.bind(this)">
+          <mat-option *ngFor="let editeur of filteredEditeur | async" [value]="editeur.id">
             <span>{{ editeur.nom }}</span>
           </mat-option>
         </mat-autocomplete>
@@ -41,7 +40,7 @@
     <div class="col-6 filter-input">
       <i class="fa fa-comments"></i>
       <mat-form-field>
-        <input matInput placeholder="Légende" [matAutocomplete]="legende"
+        <input (keypress)="changementLegende($event)" matInput placeholder="Légende" [matAutocomplete]="legende"
                [formControl]="legendeCtrl">
         <mat-autocomplete #legende="matAutocomplete">
           <mat-option *ngFor="let legende of filteredLegende | async" [value]="legende">

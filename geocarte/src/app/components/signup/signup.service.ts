@@ -8,7 +8,7 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class SignupService {
 
-  baseUrl = 'http://localhost:8080/api';
+  baseUrl = 'http://localhost:8080/geocarte/api';
 
   constructor(private http: Http) {
   }

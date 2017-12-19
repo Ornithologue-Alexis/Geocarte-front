@@ -15,7 +15,7 @@ import {MatAutocompleteModule} from '@angular/material';
 import {ModalComponent, ModalTemplateComponent} from './components/firstconnect/firstconnect.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HowtoComponent, HowToTemplateComponent} from './components/howto/howto.component';
-import { HeaderComponent } from './header/header.component';
+import {CardList, HeaderComponent} from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 
@@ -34,6 +34,7 @@ import { HttpModule } from '@angular/http';
     HowToTemplateComponent,
     HeaderComponent,
     CardAddTemplateComponent,
+    CardList
   ],
   imports: [
     BrowserModule,
@@ -56,7 +57,7 @@ import { HttpModule } from '@angular/http';
       apiKey: 'AIzaSyCAZKYezUJLxkFdkaH1pxNqJeAX8OV5Ej0	'
     })
   ],
-  entryComponents: [ModalTemplateComponent, CardTemplateComponent, HowToTemplateComponent, CardAddTemplateComponent],
+  entryComponents: [ModalTemplateComponent, CardTemplateComponent, HowToTemplateComponent, CardAddTemplateComponent, CardList],
   providers: [HttpClientModule, HttpModule],
   bootstrap: [AppComponent, HeaderComponent]
 })

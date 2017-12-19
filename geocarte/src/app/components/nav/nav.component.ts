@@ -51,7 +51,6 @@ export class NavComponent implements OnInit {
       this.profil = false;
       this.signup = false;
     }
-    console.log('OUUUUUUUUUUUUUUUI');
     this.sidenav.close();
   }
 

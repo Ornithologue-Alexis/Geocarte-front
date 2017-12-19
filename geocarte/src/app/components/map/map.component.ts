@@ -133,7 +133,6 @@ export class CardTemplateComponent {
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {
-    console.log(this.data);
     this.dialogRef.close();
   }
 

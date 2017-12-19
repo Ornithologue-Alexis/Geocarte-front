@@ -1,0 +1,58 @@
+<div id="connect-modal">
+  <div class="header-modal d-flex justify-content-between">
+    <div class=""></div>
+    <span class="">Résultat de la recherche</span>
+    <i class="fa fa-close close-icon"(click)="onNoClick()"></i>
+  </div>
+
+  <div mat-dialog-content>
+    <div *ngIf="!singleCard" class="diaporama container-fluid">
+      <div *ngIf="this.cartesPostales != null; else empty" class="row cartePostale">
+          <div class="container col-3"  *ngFor="let carte of this.cartesPostales" (click)="openSingleCard(carte)">
+            <img  *ngIf="carte.base64Photo === null"  class="image" src="../../../assets/img/notfound.jpg"/>
+            <img *ngIf="carte.base64Photo != null" class="image" [src]="_sanitizer.bypassSecurityTrustResourceUrl('data:image/PNG;base64,' + carte.base64Photo)" />
+            <div class="overlay">
+              <div class="text"><i class="fa fa-search"></i></div>
+            </div>
+          </div>
+      </div>
+      <ng-template #empty>
+        <div class="row container justify-content-between">
+          <div class="alert alert-info" role="alert">
+            <strong>Oups!</strong> Aucune carte ne correspond à votre recherche.
+          </div>
+        </div>
+      </ng-template>
+    </div>
+    <div class="singleCard" *ngIf="singleCard">
+      <div class="row">
+        <div class="img-card .col-sm-4	.col-md-4	.col-lg-4 col-6">
+          <img class="img-card rounded" *ngIf="this.cardUrl === null" src="../../../assets/img/notfound.jpg" alt=""/>
+          <img class="img-card rounded" *ngIf="this.cardUrl != null" [src]="_sanitizer.bypassSecurityTrustResourceUrl('data:image/PNG;base64,' + this.cardUrl)" alt=""/>
+        </div>
+        <div class="legend col-4">
+          <div class="div-button" (click)="closeSingleCard()">
+            <span><i class="fa fa-chevron-left"></i></span>
+            <span>Retour</span>
+          </div>
+          <div class="row avatar-row">
+            <img class="avatar rounded-circle" src="../../../assets/img/profil.png"/>
+            <span class="author">{{this.editor}}</span>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              {{this.commune}}
+            </div>
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <p>{{this.cardLegend}}</p>
+                <p>{{this.cardLegendTwo}}</p>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
