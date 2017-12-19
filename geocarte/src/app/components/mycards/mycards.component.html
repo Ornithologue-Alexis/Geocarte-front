@@ -17,17 +17,23 @@
       </div>
       <img class="singlePostCard" src="../../assets/img/{{cardUrl}}"/>
       <div class="cardInfosText">
-        <div>
-          <p>Commune</p>
-          <p>{{commune}}</p>
+        <div *ngIf="!updateCard">
+          <div>
+            <p class="title-card">Commune</p>
+            <p>{{commune}}</p>
+          </div>
+          <div>
+            <p class="title-card">Editeur</p>
+            <p>{{editor}}</p>
+          </div>
+          <div>
+            <p class="title-card">Légende</p>
+            <p>{{cardLegend}}</p>
+          </div>
+          <div><button (click)="openUpdateCard()">Mettre à jour</button></div>
         </div>
-        <div>
-          <p>Editeur</p>
-          <p>{{editor}}</p>
-        </div>
-        <div>
-          <p>Légende</p>
-          <p>{{cardLegend}}</p>
+        <div *ngIf="updateCard">
+
         </div>
       </div>
     </div>

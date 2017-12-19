@@ -95,3 +95,7 @@ button.button-close{
   height:3rem;
 }
 
+.title-card {
+  font-weight: bold;
+  font-size: 1.7rem;
+}

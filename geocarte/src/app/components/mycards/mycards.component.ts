@@ -16,6 +16,7 @@ export class MycardsComponent implements OnInit {
   cardLegendTwo = '';
   editor = '';
   commune = '';
+  updateCard = false;
   cartePostales: VarianteCarte[] = [];
   id = StorageTool.getIdUtilisateur();
 
@@ -30,14 +31,6 @@ export class MycardsComponent implements OnInit {
     });
   }
 
-  /*
-  dos: null
-face: "mtil-1707.jpg"
-id: Object { id: 1, cartePostale: {…} }
-legende: "Binic - L'Église"
-legende2: null
-   */
-
   openSingleCard(carte: VarianteCarte) {
     this.singleCard = true;
     this.cardUrl = carte.face;
@@ -51,5 +44,7 @@ legende2: null
     this.singleCard = false;
   }
 
-
+  openUpdateCard() {
+    this.updateCard = true;
+  }
 }
