@@ -13,7 +13,7 @@ export class NavComponent implements OnInit {
   profil = false;
   @Input() isConnected = false;
   @Input() signup = false;
-  @Input() cartesPostales : any[] = [];
+  @Input() cartesPostales: any[] = [];
   @ViewChild('sidenav') sidenav: MatSidenav;
   constructor() { }
 
@@ -24,10 +24,6 @@ export class NavComponent implements OnInit {
     StorageTool.disconnect();
     this.sidenav.close();
     this.isConnected = false;
-  }
-
-  getLog(){
-    console.log(this.cartesPostales);
   }
 
   openMenu() {

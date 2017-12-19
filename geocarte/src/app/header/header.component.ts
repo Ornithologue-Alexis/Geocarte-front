@@ -19,7 +19,7 @@ import 'rxjs/add/observable/of';
 export class HeaderComponent implements OnInit {
 
 
-  filter: boolean = false;
+  filter = false;
 
   communeCtrl: FormControl;
   filteredCommunes: Observable<any[]>;
@@ -38,12 +38,7 @@ export class HeaderComponent implements OnInit {
   filteredLegende: Observable<any[]>;
   legendes: string[] = [];
 
-  @Input() cartesPostales: any[] = [];
-
-  ngOnInit(): void {
-    this.getTypeMonument();
-    this.getEditeur();
-  }
+  cartesPostales: any[] = [];
 
   constructor(private headerService: HeaderService, public dialog: MatDialog) {
     this.communeCtrl = new FormControl();
@@ -59,6 +54,10 @@ export class HeaderComponent implements OnInit {
 
   }
 
+  ngOnInit(): void {
+    this.getTypeMonument();
+    this.getEditeur();
+  }
 
   private getTypeMonument() {
     let datas = this.headerService.getTypeMonuments().then(data => {
@@ -163,6 +162,7 @@ export class HeaderComponent implements OnInit {
   search() {
     this.headerService.searchCartePostale(this.communeCtrl.value, this.typeMonumentCtrl.value, this.editeurCtrl.value, this.legendeCtrl.value).then(data => {
       this.cartesPostales = data;
+      console.log(this.cartesPostales);
       const dialogRef = this.dialog.open(CardList, {
         data: {"cartesPostales": this.cartesPostales},
         panelClass: 'myapp-no-padding-dialog',

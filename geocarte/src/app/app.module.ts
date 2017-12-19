@@ -59,6 +59,6 @@ import { HttpModule } from '@angular/http';
   ],
   entryComponents: [ModalTemplateComponent, CardTemplateComponent, HowToTemplateComponent, CardAddTemplateComponent, CardList],
   providers: [HttpClientModule, HttpModule],
-  bootstrap: [AppComponent, HeaderComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
