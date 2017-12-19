@@ -4,6 +4,7 @@
       <div class="row-logo">
         <a href=""><img class="logo" src="../../../assets/img/logo.png" alt="logo geocarte"/></a>
       </div>
+      <button (click)="getLog()">biteeee</button>
       <div class="item-nav" *ngIf="isConnected">
         <button type="button" class="btn btn-link" (click)="openMenuPage('myCards')" >Mes cartes</button>
       </div>
@@ -48,7 +49,7 @@
           </button>
         </div>
       </div>
-      <app-map></app-map>
+      <app-map [cartesPostales]="this.cartesPostales"></app-map>
     </div>
   </div>
 </mat-sidenav-container>

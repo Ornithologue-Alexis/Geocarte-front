@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {HttpClient} from "@angular/common/http";
 import {HeaderService} from "../../header/header.service";
@@ -23,7 +23,7 @@ export class MapComponent implements OnInit {
 
   lastAdressCliqued = '';
 
-  cartePostale: CartePostale[] = [];
+  @Input() cartesPostales: any[] = [];
   lastCardCliqued: VarianteCarte;
 
   constructor(public dialog: MatDialog, private mapService: MapService) {
@@ -37,7 +37,7 @@ export class MapComponent implements OnInit {
     let datas = this.mapService.getCartePostale().then(data => {
       for(let i of data){
         let carteA = i.id.cartePostale;
-        this.cartePostale.push({
+        this.cartesPostales.push({
             id: i.id,
             idCarte: carteA.id,
             lat: carteA.commune.latitude,
@@ -67,10 +67,10 @@ export class MapComponent implements OnInit {
   // On enlève les markers si trop de zoom
   zoomChange($event){
     if($event > 13){
-      this.cartePostale = [];
+      this.cartesPostales = [];
     }
     if($event < 13){
-      if(this.cartePostale === []){
+      if(this.cartesPostales === []){
         this.getCartes();
       }
     }
@@ -79,6 +79,7 @@ export class MapComponent implements OnInit {
   clickedMarker(idVariante: number, idCarte: number) {
     let card: VarianteCarte;
     let datas = this.mapService.getCarteById(idVariante, idCarte).then(data => {
+      console.log(data);
       card =  {
         id: data.id,
         cartePostale: data.cartePostale,
@@ -103,6 +104,9 @@ export class MapComponent implements OnInit {
     });
   }
 
+  getLog(){
+    console.log(this.cartesPostales);
+  }
 
 
   getGeoLocation(lat: number, lng: number) {
@@ -155,10 +159,6 @@ export class CardAddTemplateComponent {
 
     onNoClick(): void {
       this.dialogRef.close();
-    }
-
-    createCard(cardForm: NgForm){
-
     }
 
 }

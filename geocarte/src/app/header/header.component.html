@@ -4,7 +4,7 @@
   </div>
   <form *ngIf="filter === true" class="form-inline container-fluid">
     <div class="col-6 filter-input">
-      <i class="fa fa-building"></i>
+      <i class="fa fa-building"></i><span>{{message}}</span>
       <mat-form-field>
         <input (keypress)="changementCommune($event)" matInput placeholder="Commune" [matAutocomplete]="commune" [formControl]="communeCtrl">
         <mat-autocomplete #commune="matAutocomplete" [displayWith]="displayCommune.bind(this)">

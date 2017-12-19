@@ -1,4 +1,4 @@
-import {Component, Inject, NgModule, OnInit} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, NgModule, OnInit, Output} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import "rxjs/add/operator/startWith";
@@ -19,11 +19,7 @@ import 'rxjs/add/observable/of';
 export class HeaderComponent implements OnInit {
 
 
-  valueCommune: number;
-
   filter: boolean = false;
-  searchEnabled: boolean = false;
-  legendeValue: string;
 
   communeCtrl: FormControl;
   filteredCommunes: Observable<any[]>;
@@ -42,9 +38,7 @@ export class HeaderComponent implements OnInit {
   filteredLegende: Observable<any[]>;
   legendes: string[] = [];
 
-
-  cartesPostales: VarianteCarte[];
-
+  @Input() cartesPostales: any[] = [];
 
   ngOnInit(): void {
     this.getTypeMonument();
@@ -83,7 +77,6 @@ export class HeaderComponent implements OnInit {
       return '';
     } else {
       let index = this.communes.findIndex(commune => commune.insee === insee);
-      console.log("display",this.communes, index);
       if (index > -1) {
         return this.communes[index].nom;
       } else { return ''; }
@@ -99,7 +92,6 @@ export class HeaderComponent implements OnInit {
       return '';
     } else {
       let index = this.typeMonuments.findIndex(typemonument => typemonument.id === id);
-      console.log("display",this.typeMonuments, index);
       if (index > -1) {
         return this.typeMonuments[index].libelle;
       } else { return ''; }
@@ -117,7 +109,6 @@ export class HeaderComponent implements OnInit {
       return '';
     } else {
       let index = this.editeurs.findIndex(editeur => editeur.id === id);
-      console.log("display",this.editeurs, index);
       if (index > -1) {
         return this.editeurs[index].nom;
       } else { return ''; }
@@ -171,9 +162,6 @@ export class HeaderComponent implements OnInit {
 
   search() {
     this.headerService.searchCartePostale(this.communeCtrl.value, this.typeMonumentCtrl.value, this.editeurCtrl.value, this.legendeCtrl.value).then(data => {
-      if (this.cartesPostales != null) {
-
-      }
       this.cartesPostales = data;
       const dialogRef = this.dialog.open(CardList, {
         data: {"cartesPostales": this.cartesPostales},
@@ -210,7 +198,6 @@ export class CardList {
   }
 
   openSingleCard(carte: VarianteCarte) {
-    console.log(carte.varianteCarte);
     this.singleCard = true;
     this.cardUrl = carte.base64Photo;
     this.cardLegend = carte.varianteCarte.legende;
