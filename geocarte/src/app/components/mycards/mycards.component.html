@@ -2,7 +2,7 @@
 <div class="diaporama" *ngIf="!singleCard">
   <div class="cartePostale" *ngFor="let carte of cartePostales" (click)="openSingleCard(carte)">
     <img *ngIf="carte.face !== null" src="../../assets/img/{{carte.face}}"/>
-    <img *ngIf="carte.face === null" src="../../assets/img/waron-1349.jpg"/>
+    <img *ngIf="carte.face === null" src="../../../assets/img/notfound.jpg"/>
     <div class="overlay">
       <div class="text"><i class="fa fa-search" aria-hidden="true"></i></div>
     </div>

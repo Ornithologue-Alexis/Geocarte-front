@@ -127,7 +127,7 @@ export class HeaderComponent implements OnInit {
   filterEditeur(nom: string) {
     return nom ? this.editeurs.filter((s) => new RegExp(nom, 'gi').test(s.nom)) : this.editeurs;
   }
-  
+
   filterLegende(libelle: string) {
     return this.legendes.filter(legende =>
       legende.toLowerCase().indexOf(libelle.toLowerCase()) === 0);
