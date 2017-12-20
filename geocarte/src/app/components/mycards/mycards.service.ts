@@ -21,27 +21,16 @@ export class MycardsService {
       .catch(this.handleError);
   }
 
-  updateCardInfo(idCard: number, idVariante: number, idCommune: number, idEditor: number, legend: string) {
+  updateCardInfo(idCard: number, idVariante: number, idCommune: string, idEditor: number, legend: string) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let changes = {
-      "id": {
-      "cartePostale": {
-        "codeEditeur": idEditor,
-          "commune": {
-          "insee": idCommune,
-        },
-        "editeur": {
-            "id": idEditor,
-        },
-        "id": 0,
-      },
-      "id": 0
-    },
+      "communeId": idCommune,
+      "editeurId": idEditor,
       "legende": legend
     };
     let body = JSON.stringify(changes);
-    return this.http.put(this.baseUrl + '/varianteCarte/' + idCard + '/' + idVariante, body, options ).map((res: Response) => res.json());
+    return this.http.put(this.baseUrl + '/varianteCarte/' + idVariante + '?carteId=' + idCard, body, options ).map((res: Response) => res.json());
   }
 
 
@@ -64,12 +53,12 @@ export class MycardsService {
       .catch(this.handleError);
   }
 
-  deleteCard(idCard: number, idVariante: number) {
+  deleteCard(idUser: number, idCard: number, idVariante: number) {
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.delete(this.baseUrl + '/varianteCarte/' + idCard + '/' + idVariante, options)
+    return this.http.delete(this.baseUrl + '/carteUtilisateur/' + idUser + '/' + idVariante + '/' + idCard, options)
       .map((res: Response) => res.json());
   }
 

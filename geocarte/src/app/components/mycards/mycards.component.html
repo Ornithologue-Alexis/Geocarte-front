@@ -64,7 +64,7 @@
               <mat-form-field>
                 <input (keypress)="changementCommune($event)" class="input-update-card" matInput placeholder="Commune" [matAutocomplete]="commune" [formControl]="communeCtrl">
                 <mat-autocomplete #commune="matAutocomplete" [displayWith]="displayCommune.bind(this)">
-                  <mat-option  *ngFor="let communeCard of filteredCommunes | async" [value]="commune.insee">
+                  <mat-option  *ngFor="let communeCard of filteredCommunes | async" [value]="communeCard.insee">
                     <span>{{ communeCard.nom }}</span>
                   </mat-option>
                 </mat-autocomplete>

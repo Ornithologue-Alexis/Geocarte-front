@@ -86,7 +86,8 @@ export class MycardsComponent implements OnInit {
 
   updateCard() {
     this.updateCardModule = false;
-    this.mycardsService.updateCardInfo(+this.varianteId.cartePostale.id, +this.varianteId.id, this.communeCtrl.value, this.editeurCtrl.value, this.legendeCtrl.value).subscribe(data => {
+    console.log(this.editeurCtrl.value);
+    this.mycardsService.updateCardInfo(+this.varianteId.cartePostale.id, +this.varianteId.id, this.communeCtrl.value, +this.editeurCtrl.value, this.legendeCtrl.value).subscribe(data => {
       console.log(data);
     }, err => {
       console.log("check if any err "+err);
@@ -94,7 +95,7 @@ export class MycardsComponent implements OnInit {
   }
 
   deleteCard(variante: VarianteCarte) {
-    this.mycardsService.deleteCard(+variante.cartePostale.id, +variante.id).subscribe(data => {
+    this.mycardsService.deleteCard(+this.id, +variante.cartePostale.id, +variante.id).subscribe(data => {
           console.log('ça fonctionne du tonnerre. Pardi.');
         }, err => {
           console.log("check if any err "+err);
