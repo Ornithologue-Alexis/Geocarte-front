@@ -7,6 +7,7 @@ import {HeaderService} from "./header.service";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 import {DomSanitizer, SafeHtml, SafeUrl} from '@angular/platform-browser';
 import 'rxjs/add/observable/of';
+import StorageTool from "../utils/storageTool";
 
 
 @Component({
@@ -39,6 +40,8 @@ export class HeaderComponent implements OnInit {
   legendes: string[] = [];
 
   cartesPostales: any[] = [];
+
+  operateurId: string = StorageTool.getIdUtilisateur();
 
   constructor(private headerService: HeaderService, public dialog: MatDialog) {
     this.communeCtrl = new FormControl();
@@ -78,7 +81,9 @@ export class HeaderComponent implements OnInit {
       let index = this.communes.findIndex(commune => commune.insee === insee);
       if (index > -1) {
         return this.communes[index].nom;
-      } else { return ''; }
+      } else {
+        return '';
+      }
     }
   }
 
@@ -93,7 +98,9 @@ export class HeaderComponent implements OnInit {
       let index = this.typeMonuments.findIndex(typemonument => typemonument.id === id);
       if (index > -1) {
         return this.typeMonuments[index].libelle;
-      } else { return ''; }
+      } else {
+        return '';
+      }
     }
   }
 
@@ -110,7 +117,9 @@ export class HeaderComponent implements OnInit {
       let index = this.editeurs.findIndex(editeur => editeur.id === id);
       if (index > -1) {
         return this.editeurs[index].nom;
-      } else { return ''; }
+      } else {
+        return '';
+      }
     }
   }
 
@@ -128,8 +137,8 @@ export class HeaderComponent implements OnInit {
   }
 
   changementLegende(event) {
-    if (event.srcElement.value.length >= 1) {
-      this.headerService.getLegendesWithBeginning(event.srcElement.value).then(data => {
+    if (event.target.value.length >= 1) {
+      this.headerService.getLegendesWithBeginning(event.target.value).then(data => {
         this.legendes = data;
       });
       if (this.legendes != null) {
@@ -145,7 +154,7 @@ export class HeaderComponent implements OnInit {
 
   changementCommune(event) {
     if (event.srcElement.value.length >= 1) {
-      this.headerService.getCommunesWithBeginning(event.srcElement.value).then(data => {
+      this.headerService.getCommunesWithBeginning(event.target.value).then(data => {
         this.communes = data;
       });
       if (this.communes != null) {
@@ -160,24 +169,41 @@ export class HeaderComponent implements OnInit {
   }
 
   search() {
+    if (this.operateurId === undefined) this.operateurId = '';
     this.cartesPostales = [];
-    this.headerService.searchCartePostale(this.communeCtrl.value, this.typeMonumentCtrl.value, this.editeurCtrl.value, this.legendeCtrl.value).then(data => {
-      if(data != null){
-        for(let i of data){
+    this.headerService.searchCartePostale(this.communeCtrl.value, this.typeMonumentCtrl.value, this.editeurCtrl.value, this.legendeCtrl.value, this.operateurId).then(data => {
+      if (data != null) {
+        for (let i of data) {
           let carteA = i.varianteCarte.id;
-          this.cartesPostales.push({
-              id: carteA.id,
-              idCarte: carteA.cartePostale.id,
-              lat: carteA.cartePostale.latitude,
-              lng: carteA.cartePostale.longitude,
-              nomCommune: carteA.cartePostale.commune.nom,
-              nomEditeur: carteA.cartePostale.editeur.nom,
-              legende: i.varianteCarte.legende,
-              nomMonument: carteA.cartePostale.monuments.nom,
-              base64Photo: i.base64Photo,
-              icon: 'red',
-            }
-          )
+          if (i.owned) {
+            this.cartesPostales.push({
+                id: carteA.id,
+                idCarte: carteA.cartePostale.id,
+                lat: carteA.cartePostale.latitude,
+                lng: carteA.cartePostale.longitude,
+                nomCommune: carteA.cartePostale.commune.nom,
+                nomEditeur: carteA.cartePostale.editeur.nom,
+                legende: i.varianteCarte.legende,
+                nomMonument: carteA.cartePostale.monuments.nom,
+                base64Photo: i.base64Photo,
+                icon: 'blue',
+              }
+            )
+          } else {
+            this.cartesPostales.push({
+                id: carteA.id,
+                idCarte: carteA.cartePostale.id,
+                lat: carteA.cartePostale.latitude,
+                lng: carteA.cartePostale.longitude,
+                nomCommune: carteA.cartePostale.commune.nom,
+                nomEditeur: carteA.cartePostale.editeur.nom,
+                legende: i.varianteCarte.legende,
+                nomMonument: carteA.cartePostale.monuments.nom,
+                base64Photo: i.base64Photo,
+                icon: 'red',
+              }
+            );
+          }
         }
       }
       const dialogRef = this.dialog.open(CardList, {

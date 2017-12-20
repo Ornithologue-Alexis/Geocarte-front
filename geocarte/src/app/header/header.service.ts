@@ -57,13 +57,13 @@ export class HeaderService {
       .catch(this.handleError);
   }
 
-  searchCartePostale(commune, typemonument, editeur, legende): Promise<VarianteCarte[]> {
+  searchCartePostale(commune, typemonument, editeur, legende, userId: string): Promise<VarianteCarte[]> {
     if(commune === null) commune ='';
     if(typemonument === null) typemonument ='';
     if(editeur === null) editeur ='';
     if(legende === null) legende ='';
-
-    console.log((this.baseUrl + '/varianteCarte/?typemonument'+typemonument+'=&editeur'+editeur+'=&commune'+commune+'=&legende='+encodeURIComponent(legende)));
+    if(userId === null) userId = '';
+    console.log((this.baseUrl + '/varianteCarte/?typemonument'+typemonument+'=&editeur'+editeur+'=&commune'+commune+'=&legende='+encodeURIComponent(legende)+'&userId='+userId));
     return this.http.get((this.baseUrl + '/varianteCarte/?typemonument='+encodeURIComponent(typemonument)+'&editeur='+encodeURIComponent(editeur)+'&commune='+encodeURIComponent(commune)+'&legende='+encodeURIComponent(legende)))
       .toPromise()
       .then(response => response.json() as VarianteCarte[])

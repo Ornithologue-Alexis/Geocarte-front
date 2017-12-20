@@ -12,20 +12,34 @@ export class MapService {
 
   private baseUrl = 'http://localhost:8080/geocarte/api';
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) {
+  }
 
-  getCartePostale():  Promise<VarianteCarte[]> {
-    return this.http.get(this.baseUrl + '/varianteCarte/')
+  getCartePostale(idUser: string): Promise<VarianteCarte[]> {
+    return this.http.get(this.baseUrl + '/varianteCarte/?userId='+idUser)
       .toPromise()
       .then(response => response.json() as VarianteCarte[])
       .catch(this.handleError);
   }
 
-  getCarteById(idVariante : number, idCarte):  Promise<VarianteCarte> {
-    return this.http.get(this.baseUrl + '/varianteCarte/'+idCarte+'/'+idVariante)
+  getCarteById(idVariante: number, idCarte): Promise<VarianteCarte> {
+    return this.http.get(this.baseUrl + '/varianteCarte/' + idCarte + '/' + idVariante)
       .toPromise()
       .then(response => response.json() as VarianteCarte)
       .catch(this.handleError);
+  }
+
+  addUserOnCard(idCard: number, idVariante:number, idUser:string){
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+    let changes = {
+      'idUser': idUser,
+      'idVariante': idVariante,
+      'idCard': idCard,
+    };
+    let body = JSON.stringify(changes);
+    console.log(body);
+    return this.http.post(this.baseUrl + '/carteUtilisateur/'+idUser+'/'+idVariante+'/'+idCard+'', body, options).map((res: Response) => res.json().catch(this.handleError));
   }
 
   createCard(cardData: CartePostale): Promise<CartePostale> {
@@ -34,9 +48,9 @@ export class MapService {
       .catch(this.handleError);
   }
 
-  changeLatLngMarker(id:number, lng: number, lat: number){
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+  changeLatLngMarker(id: number, lng: number, lat: number) {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
     let changes = {
       'id': id,
       'latitude': lat,
@@ -44,7 +58,15 @@ export class MapService {
     };
     let body = JSON.stringify(changes);
     console.log(body);
-    return this.http.put(this.baseUrl + '/coordonneesCarte/'+id, body, options ).map((res: Response) => res.json().catch(this.handleError));
+    return this.http.put(this.baseUrl + '/coordonneesCarte/' + id, body, options).map((res: Response) => res.json().catch(this.handleError));
+  }
+
+  getUsersOfCarte(idvariante: any): Promise<boolean>{
+
+    return this.http.get(this.baseUrl + '/usersId/'+idvariante+'/')
+      .toPromise()
+      .then(response => response.json() as string[])
+      .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {

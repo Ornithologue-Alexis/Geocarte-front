@@ -130,3 +130,6 @@ span.author{
 .div-button {
   cursor : pointer;
 }
+.row-button{
+  margin-right: 10px;
+}
