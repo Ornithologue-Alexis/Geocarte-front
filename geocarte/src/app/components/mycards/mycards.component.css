@@ -62,6 +62,7 @@
   width : 60%;
   display : block;
   margin : 0 auto;
+  background-color : white;
 }
 
 .cardInfos .div-button {
@@ -75,16 +76,17 @@
   object-fit: cover;
   display : inline-block;
   vertical-align:top;
-  padding-right : 1.3rem;
-  border-right : 2px solid white;
 }
 
 .cardInfosText {
   width : 39%;
+  min-height : 25rem;
   padding-left : 1rem;
+  padding-bottom : 2rem;
   display : inline-block;
   vertical-align:top;
-  color : white;
+  color : black;
+  overflow-y : scroll;
 }
 
 button.button-close{
@@ -98,4 +100,21 @@ button.button-close{
 .title-card {
   font-weight: bold;
   font-size: 1.7rem;
+}
+
+.input-update-card {
+  background-color : white;
+  padding : 0.5rem 0;
+  line-height : 1rem;
+}
+
+.title-update-card
+{
+  font-weight: bold;
+  font-size: 1.7rem;
+}
+
+.old-input-value {
+  font-size:0.7rem;
+  margin-bottom : 1rem;
 }

@@ -66,7 +66,7 @@ export class ProfilComponent implements OnInit {
         newPassword = this.password;
       }
       if (!this.newPasswordError && !this.oldPasswordError && !this.profilForm.get('email').errors) {
-        this.profilService.updateUserInfo(newEmail, this.id, newPassword, newName).subscribe(data => {
+        this.profilService.updateUserInfo(this.id, newEmail, newPassword, newName).subscribe(data => {
           this.name = newName;
           this.profilForm.controls.email.setValue(newEmail);
           this.profilForm.controls.name.setValue(newName);

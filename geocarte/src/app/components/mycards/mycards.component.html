@@ -21,7 +21,7 @@
         <div *ngIf="updateCardModule === false">
           <div>
             <p class="title-card">Commune</p>
-            <p>{{commune}}</p>
+            <p>{{cardCommune}}</p>
           </div>
           <div>
             <p class="title-card">Editeur</p>
@@ -31,31 +31,74 @@
             <p class="title-card">Légende</p>
             <p>{{cardLegend}}</p>
           </div>
-          <div><button class="btn btn-primary" (click)="openUpdateCard()">Mettre à jour</button></div>
-          <div><button class="btn btn-primary" (click)="deleteCard()">Supprimer</button></div>
+          <div>
+            <button class="btn btn-primary" (click)="openUpdateCard()">Mettre à jour</button>
+            <button class="btn btn-primary" (click)="deleteCard(varianteId)">Supprimer</button>
+          </div>
         </div>
 
-        <div *ngIf="updateCardModule === true">
-          <form [formGroup]="updateForm" (ngSubmit)="updateCard($event)">
+        <div *ngIf="updateCardModule === true && createNewEditor === true">
+          <p class="title-update-card">Modifier la carte</p>
+          <form class="form-inline container-fluid">
             <div class="form-group row">
-              <label for="communeInput" class="col-12 col-form-label">Commune</label>
-              <div class="col-12">
-                <input class="form-control" type="text" id="communeInput" formControlName="commune">
-              </div>
+              <mat-form-field>
+                <input class="input-update-card" matInput placeholder="Nom éditeur" [formControl]="newEditorCtrl">
+              </mat-form-field>
             </div>
             <div class="form-group row">
-              <label for="editeurInput" class="col-12 col-form-label">Editeur</label>
-              <div class="col-12">
-                <input class="form-control" type="text" id="editeurInput" formControlName="editeur">
-              </div>
+              <mat-form-field>
+                <input class="input-update-card" matInput placeholder="Numéro éditeur" [formControl]="newEditorNumber">
+              </mat-form-field>
+            </div>
+            <div class="col-12 button-submit">
+              <button class="btn btn-primary" (click)="closeNewEditor()">Retour</button>
+              <button class="btn btn-primary" (click)="addEditor()">Ajouter</button>
+            </div>
+          </form>
+        </div>
+
+        <div *ngIf="updateCardModule === true && createNewEditor === false">
+          <p class="title-update-card">Modifier la carte</p>
+          <form class="form-inline container-fluid">
+            <div class="form-group row">
+              <mat-form-field>
+                <input (keypress)="changementCommune($event)" class="input-update-card" matInput placeholder="Commune" [matAutocomplete]="commune" [formControl]="communeCtrl">
+                <mat-autocomplete #commune="matAutocomplete" [displayWith]="displayCommune.bind(this)">
+                  <mat-option  *ngFor="let communeCard of filteredCommunes | async" [value]="commune.insee">
+                    <span>{{ communeCard.nom }}</span>
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+              <div class="old-input-value">Commune actuelle : {{cardCommune}}</div>
             </div>
             <div class="form-group row">
-              <label for="legendeInput" class="col-12 col-form-label">Légende</label>
-              <div class="col-12">
-                <input class="form-control" type="text" id="legendeInput" formControlName="legende">
-              </div>
+              <mat-form-field>
+                <input matInput placeholder="Editeur" class="input-update-card" [matAutocomplete]="editeur"
+                       [formControl]="editeurCtrl">
+                <mat-autocomplete #editeur="matAutocomplete" [displayWith]="displayEditeur.bind(this)">
+                  <mat-option *ngFor="let editeur of filteredEditeur | async" [value]="editeur.id">
+                    <span>{{ editeur.nom }}</span>
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+              <button class="btn btn-primary" (click)="openNewEditor()">Créer</button>
+              <div class="old-input-value">Editeur actuel : {{editor}}</div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-group row">
+              <mat-form-field>
+                <input (keypress)="changementLegende($event)" class="input-update-card" matInput placeholder="Légende" [matAutocomplete]="legende"
+                       [formControl]="legendeCtrl">
+                <mat-autocomplete #legende="matAutocomplete">
+                  <mat-option *ngFor="let legende of filteredLegende | async" [value]="legende">
+                    <span>{{ legende }}</span>
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+              <div class="old-input-value">Légende actuel : {{cardLegend}}</div>
+            </div>
+            <div class="col-12 button-submit">
+              <button class="btn btn-primary" (click)="updateCard()">Sauvegarder</button>
+            </div>
           </form>
         </div>
       </div>

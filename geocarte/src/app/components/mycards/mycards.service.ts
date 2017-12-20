@@ -1,4 +1,4 @@
-import {Http} from '@angular/http';
+import {Http, RequestOptions, Headers, Response} from '@angular/http';
 import {Injectable} from '@angular/core';
 
 /**
@@ -21,20 +21,58 @@ export class MycardsService {
       .catch(this.handleError);
   }
 
-  /*
-  updateCardInfo(idUser: string, idCommune: string, idEditeur: string, legende: string) {
+  updateCardInfo(idCard: number, idVariante: number, idCommune: number, idEditor: number, legend: string) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let changes = {
-      'idCommune': email,
-      'id': idUser,
-      'motdepasse': password,
-      'nom': nom
+      "id": {
+      "cartePostale": {
+        "codeEditeur": idEditor,
+          "commune": {
+          "insee": idCommune,
+        },
+        "editeur": {
+            "id": idEditor,
+        },
+        "id": 0,
+      },
+      "id": 0
+    },
+      "legende": legend
     };
     let body = JSON.stringify(changes);
-    return this.http.put(this.baseUrl + '/utilisateur/' + id, body, options ).map((res: Response) => res.json());
+    return this.http.put(this.baseUrl + '/varianteCarte/' + idCard + '/' + idVariante, body, options ).map((res: Response) => res.json());
   }
-  */
+
+
+  createNewEditor(name: string, code: string) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let changes = {
+      'nom': name,
+      'id': 0,
+      'code': code
+    };
+    let body = JSON.stringify(changes);
+    return this.http.post(this.baseUrl + '/editeur/', body, options ).map((res: Response) => res.json());
+  }
+
+  getAllEditeurs(): Promise<Editeur[]> {
+    return this.http.get(this.baseUrl + '/editeur/')
+      .toPromise()
+      .then(response => response.json() as Editeur[])
+      .catch(this.handleError);
+  }
+
+  deleteCard(idCard: number, idVariante: number) {
+
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.delete(this.baseUrl + '/varianteCarte/' + idCard + '/' + idVariante, options)
+      .map((res: Response) => res.json());
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('Some error occured', error);
     return Promise.reject(error.message || error);
