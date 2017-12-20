@@ -2,7 +2,7 @@
   <agm-map [latitude]="lat" [longitude]="lng" [zoom]="mapZoom" [streetViewControl]="false" (mapDblClick)="mapDoubleClicked ($event)">
     <agm-marker
       *ngFor="let m of cartesPostales; let i = index"
-      (markerClick)="clickedMarker(m.id, m.idCarte)"
+      (markerClick)="clickedMarker(m.id, m.idCarte, m.owned)"
       [latitude]="m.lat"
       [longitude]="m.lng"
       [markerDraggable]="true"

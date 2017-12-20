@@ -39,7 +39,6 @@ export class MapService {
       'nombreExemplaire': 1
     }
     let body = JSON.stringify(changes);
-    console.log(body);
     return this.http.post(this.baseUrl + '/carteUtilisateur/', body, options).map((res: Response) => res.json().catch(this.handleError));
   }
 
@@ -67,12 +66,10 @@ export class MapService {
       'longitude': lng,
     };
     let body = JSON.stringify(changes);
-    console.log(body);
     return this.http.put(this.baseUrl + '/coordonneesCarte/' + id, body, options).map((res: Response) => res.json().catch(this.handleError));
   }
 
   getUsersOfCarte(idvariante: any): Promise<boolean>{
-
     return this.http.get(this.baseUrl + '/usersId/'+idvariante+'/')
       .toPromise()
       .then(response => response.json() as string[])

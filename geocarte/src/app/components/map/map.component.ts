@@ -52,7 +52,8 @@ export class MapComponent implements OnInit {
                 nomEditeur: carteA.editeur.nom,
                 legende: carteA.legende,
                 nomMonument: carteA.monuments.nom,
-                icon: 'blue'
+                icon: 'blue',
+                owned: i.owned
               }
             );
           }else{
@@ -65,7 +66,8 @@ export class MapComponent implements OnInit {
                 nomEditeur: carteA.editeur.nom,
                 legende: carteA.legende,
                 nomMonument: carteA.monuments.nom,
-                icon: 'red'
+                icon: 'red',
+                owned: i.owned
               }
             );
           }
@@ -88,16 +90,17 @@ export class MapComponent implements OnInit {
   markerDragEnd(m: any, $event: any) {
     let lat = $event.coords.lat;
     let lng = $event.coords.lng;
-    let id = m.id;
+    let id = m.idCarte
     this.mapService.changeLatLngMarker(id, lng, lat).subscribe(data => {
 
     }, err => {
     });
   }
 
-  clickedMarker(idVariante: number, idCarte: number) {
+  clickedMarker(idVariante: number, idCarte: number, owned: boolean) {
     let card: VarianteCarte;
     let datas = this.mapService.getCarteById(idVariante, idCarte).then(data => {
+      data.owned = owned;
       const dialogRef = this.dialog.open(CardTemplateComponent, {
         data: { cartePostal : data},
         panelClass: 'myapp-no-padding-dialog',
@@ -144,6 +147,7 @@ export class CardTemplateComponent {
   constructor(
     public dialogRef: MatDialogRef<CardTemplateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private _sanitizer: DomSanitizer,  private mapService: MapService) {
+    // console.log(this.data);
 
 
   }
