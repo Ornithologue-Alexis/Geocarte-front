@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/toPromise';
-import { Headers, Http } from '@angular/http';
+import {Headers, Http, RequestOptions, Response} from '@angular/http';
 
 /**
  * @title Dialog Overview
@@ -32,6 +32,19 @@ export class MapService {
     return this.http.post(this.baseUrl + '/varianteCarte/', cardData)
       .toPromise().then(response => response.json() as CartePostale)
       .catch(this.handleError);
+  }
+
+  changeLatLngMarker(id:number, lng: number, lat: number){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let changes = {
+      'id': id,
+      'latitude': lat,
+      'longitude': lng,
+    };
+    let body = JSON.stringify(changes);
+    console.log(body);
+    return this.http.put(this.baseUrl + '/coordonneesCarte/'+id, body, options ).map((res: Response) => res.json().catch(this.handleError));
   }
 
   private handleError(error: any): Promise<any> {

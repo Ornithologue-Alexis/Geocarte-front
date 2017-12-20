@@ -65,7 +65,14 @@ export class MapComponent implements OnInit {
   }
 
   // On enlève les markers si trop de zoom
-  zoomChange($event){
+  markerDragEnd(m: any, $event: any) {
+    let lat = $event.coords.lat;
+    let lng = $event.coords.lng;
+    let id = m.id;
+    this.mapService.changeLatLngMarker(id, lng, lat).subscribe(data => {
+
+    }, err => {
+    });
   }
 
   clickedMarker(idVariante: number, idCarte: number) {
