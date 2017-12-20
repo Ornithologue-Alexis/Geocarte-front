@@ -5,6 +5,8 @@ import {HeaderService} from "../../header/header.service";
 import {MapService} from "./map.service";
 import {NgForm} from "@angular/forms";
 import {DomSanitizer} from "@angular/platform-browser";
+import StorageTool from "../../utils/storageTool";
+import {MycardsService} from "../mycards/mycards.service";
 declare let google: any;
 
 
@@ -23,6 +25,8 @@ export class MapComponent implements OnInit {
 
   lastAdressCliqued = '';
 
+  operateurId :string = StorageTool.getIdUtilisateur();
+
   @Input() cartesPostales: any[] = [];
   lastCardCliqued: VarianteCarte;
 
@@ -34,21 +38,37 @@ export class MapComponent implements OnInit {
   }
 
   getCartes(){
-    let datas = this.mapService.getCartePostale().then(data => {
+    if(this.operateurId === undefined) this.operateurId = '';
+    let datas = this.mapService.getCartePostale(this.operateurId).then(data => {
       for(let i of data){
-        let carteA = i.id.cartePostale;
-        this.cartesPostales.push({
-            id: i.id.id,
-            idCarte: carteA.id,
-            lat: carteA.latitude,
-            lng: carteA.longitude,
-            nomCommune: carteA.commune.nom,
-            nomEditeur: carteA.editeur.nom,
-            legende: carteA.legende,
-            nomMonument: carteA.monuments.nom,
-            icon: 'red',
+        let carteA = i.varianteCarte.id.cartePostale;
+          if(i.owned){
+            this.cartesPostales.push({
+                id: i.varianteCarte.id.id,
+                idCarte: carteA.id,
+                lat: carteA.latitude,
+                lng: carteA.longitude,
+                nomCommune: carteA.commune.nom,
+                nomEditeur: carteA.editeur.nom,
+                legende: carteA.legende,
+                nomMonument: carteA.monuments.nom,
+                icon: 'blue'
+              }
+            );
+          }else{
+            this.cartesPostales.push({
+                id: i.varianteCarte.id.id,
+                idCarte: carteA.id,
+                lat: carteA.latitude,
+                lng: carteA.longitude,
+                nomCommune: carteA.commune.nom,
+                nomEditeur: carteA.editeur.nom,
+                legende: carteA.legende,
+                nomMonument: carteA.monuments.nom,
+                icon: 'red'
+              }
+            );
           }
-        )
       }
     });
   }
@@ -97,11 +117,6 @@ export class MapComponent implements OnInit {
     });
   }
 
-  getLog(){
-    console.log(this.cartesPostales);
-  }
-
-
   getGeoLocation(lat: number, lng: number) {
     if (navigator.geolocation) {
       const geocoder = new google.maps.Geocoder();
@@ -122,15 +137,34 @@ export class MapComponent implements OnInit {
 @Component({
   selector: 'app-modal-template',
   templateUrl: './card.modal.template.html',
-  styleUrls: ['./card.modal.template.css']
+  styleUrls: ['./card.modal.template.css'],
+  providers: [MapService],
 })
 export class CardTemplateComponent {
   constructor(
     public dialogRef: MatDialogRef<CardTemplateComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private _sanitizer: DomSanitizer) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private _sanitizer: DomSanitizer,  private mapService: MapService) { }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  addUserOnCard(){
+    if(StorageTool.getIdUtilisateur() != '' || StorageTool.getIdUtilisateur() != null){
+      let datas = this.mapService.addUserOnCard(this.data.cartePostal.varianteCarte.id.cartePostale.id, this.data.cartePostal.varianteCarte.id.id, StorageTool.getIdUtilisateur()).subscribe(data => {
+
+      }, err => {
+      });
+    }
+  }
+
+  deleteUserOncard(){
+    if(StorageTool.getIdUtilisateur() != '' || StorageTool.getIdUtilisateur() != null){
+      let datas = this.mapService.addUserOnCard(this.data.cartePostal.varianteCarte.id.cartePostale.id, this.data.cartePostal.varianteCarte.id.id, StorageTool.getIdUtilisateur()).subscribe(data => {
+
+      }, err => {
+      });
+    }
   }
 
 }

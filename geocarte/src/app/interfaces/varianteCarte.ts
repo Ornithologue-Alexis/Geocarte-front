@@ -2,6 +2,7 @@
 interface VarianteCarte {
   id: VarianteCarte;
   varianteCarte?: VarianteCarte;
+  utilisateurs?: User[];
   cartePostale: CartePostale;
   legende: string;
   legende2?: string;
@@ -11,4 +12,5 @@ interface VarianteCarte {
   nomCommune?: string;
   latitude?: string;
   longitude?: string;
+  owned?: boolean;
 }
