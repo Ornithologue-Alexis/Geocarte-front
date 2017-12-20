@@ -39,3 +39,7 @@ span.author{
 .card-header{
   text-transform: capitalize;
 }
+
+img.image{
+  width: 100%;
+}

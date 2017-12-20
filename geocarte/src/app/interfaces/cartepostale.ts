@@ -6,8 +6,8 @@ class CartePostale {
   editeur?: Editeur;
   monuments?: Monument;
   commune?: Commune;
-  lat?: number;
-  lng?: number;
+  latitude?: number;
+  longitude?: number;
   nomEditeur?: string;
   nomCommune?: string;
   legende: string;
