@@ -21,6 +21,20 @@ export class MycardsService {
       .catch(this.handleError);
   }
 
+  /*
+  updateCardInfo(idUser: string, idCommune: string, idEditeur: string, legende: string) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let changes = {
+      'idCommune': email,
+      'id': idUser,
+      'motdepasse': password,
+      'nom': nom
+    };
+    let body = JSON.stringify(changes);
+    return this.http.put(this.baseUrl + '/utilisateur/' + id, body, options ).map((res: Response) => res.json());
+  }
+  */
   private handleError(error: any): Promise<any> {
     console.error('Some error occured', error);
     return Promise.reject(error.message || error);

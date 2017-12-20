@@ -17,7 +17,8 @@
       </div>
       <img class="singlePostCard" src="../../assets/img/{{cardUrl}}"/>
       <div class="cardInfosText">
-        <div *ngIf="!updateCard">
+
+        <div *ngIf="updateCardModule === false">
           <div>
             <p class="title-card">Commune</p>
             <p>{{commune}}</p>
@@ -30,10 +31,32 @@
             <p class="title-card">Légende</p>
             <p>{{cardLegend}}</p>
           </div>
-          <div><button (click)="openUpdateCard()">Mettre à jour</button></div>
+          <div><button class="btn btn-primary" (click)="openUpdateCard()">Mettre à jour</button></div>
+          <div><button class="btn btn-primary" (click)="deleteCard()">Supprimer</button></div>
         </div>
-        <div *ngIf="updateCard">
 
+        <div *ngIf="updateCardModule === true">
+          <form [formGroup]="updateForm" (ngSubmit)="updateCard($event)">
+            <div class="form-group row">
+              <label for="communeInput" class="col-12 col-form-label">Commune</label>
+              <div class="col-12">
+                <input class="form-control" type="text" id="communeInput" formControlName="commune">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="editeurInput" class="col-12 col-form-label">Editeur</label>
+              <div class="col-12">
+                <input class="form-control" type="text" id="editeurInput" formControlName="editeur">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="legendeInput" class="col-12 col-form-label">Légende</label>
+              <div class="col-12">
+                <input class="form-control" type="text" id="legendeInput" formControlName="legende">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
         </div>
       </div>
     </div>

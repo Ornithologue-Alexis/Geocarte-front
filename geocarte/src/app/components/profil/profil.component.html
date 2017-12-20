@@ -1,34 +1,40 @@
-<div class="user_name"><p>Alexis Renault</p></div>
+<div class="user_name"><p>{{name}}</p></div>
 <div class="formulaire">
-  <form>
+  <form [formGroup]="profilForm" (ngSubmit)="updateUser($event)">
     <div class="form-group row">
-      <label for="inputEmail" class="col-12 col-form-label">Email address</label>
+      <label for="emailInput" class="col-12 col-form-label">Email</label>
       <div class="col-12">
-        <input type="email" class="form-control" id="inputEmail" value="{{email}}" aria-describedby="emailHelp" placeholder="Enter email">
+        <input class="form-control" type="email" id="emailInput" formControlName="email">
+        <div *ngIf="profilForm.get('email').touched && profilForm.get('email').errors" class="form-control-feedback error-message">
+          Please enter the correct email, this email not valid.
+        </div>
       </div>
     </div>
     <div class="form-group row">
-      <label for="dateInput" class="col-12 col-form-label">Name</label>
+      <label for="nameInput" class="col-12 col-form-label">Name</label>
       <div class="col-12">
-        <input class="form-control" type="text" value="{{name}}" id="dateInput">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="InputOldPassword" class="col-12 col-form-label">Ancien mot de passe</label>
-      <div class="col-12">
-        <input type="password" class="form-control" id="InputOldPassword" placeholder="Password">
+        <input class="form-control" type="text" id="nameInput" formControlName="name">
       </div>
     </div>
     <div class="form-group row">
       <label for="InputNewPassword" class="col-12 col-form-label">Nouveau mot de passe</label>
       <div class="col-12">
-        <input type="password" class="form-control" id="InputNewPassword" placeholder="Password">
+        <input type="password" class="form-control" id="InputNewPassword" placeholder="Password" formControlName="newpassword">
       </div>
     </div>
     <div class="form-group row">
       <label for="InputConfirmNewPassword" class="col-12 col-form-label">Confirmer nouveau mot de passe</label>
       <div class="col-12">
-        <input type="password" class="form-control" id="InputConfirmNewPassword" placeholder="Password">
+        <input type="password" class="form-control" id="InputConfirmNewPassword" placeholder="Password" formControlName="newpasswordbis">
+        <div class="form-control-feedback error-message" *ngIf="newPasswordError">Les deux mots de passe ne correspondent pas.</div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="InputOldPassword" class="col-12 col-form-label">Ancien mot de passe</label>
+      <div class="col-12">
+        <input type="password" class="form-control" id="InputOldPassword" placeholder="Password" formControlName="oldpassword">
+        <small id="passwordHelp" class="form-text text-muted">Si vous souhaitez changer de mot de passe, veuillez renseigner ce champ.</small>
+        <div class="form-control-feedback error-message" *ngIf="oldPasswordError">Ceci n'est pas votre mot de passe actuel.</div>
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
