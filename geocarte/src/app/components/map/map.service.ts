@@ -33,13 +33,23 @@ export class MapService {
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
     let changes = {
-      'idUser': idUser,
+      'idCarte': idCard,
+      'idUtilisateur': idUser,
       'idVariante': idVariante,
-      'idCard': idCard,
-    };
+      'nombreExemplaire': 1
+    }
     let body = JSON.stringify(changes);
     console.log(body);
-    return this.http.post(this.baseUrl + '/carteUtilisateur/'+idUser+'/'+idVariante+'/'+idCard+'', body, options).map((res: Response) => res.json().catch(this.handleError));
+    return this.http.post(this.baseUrl + '/carteUtilisateur/', body, options).map((res: Response) => res.json().catch(this.handleError));
+  }
+
+  deleteUserOnCard(idCard: number , idVariante: number, userId:string) {
+
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.delete(this.baseUrl + '/carteUtilisateur/' + userId + '/' + idVariante + '/' + idCard, options)
+      .map((res: Response) => res.json());
   }
 
   createCard(cardData: CartePostale): Promise<CartePostale> {

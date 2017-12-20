@@ -187,6 +187,7 @@ export class HeaderComponent implements OnInit {
                 nomMonument: carteA.cartePostale.monuments.nom,
                 base64Photo: i.base64Photo,
                 icon: 'blue',
+                owned: i.owned
               }
             )
           } else {
@@ -201,6 +202,7 @@ export class HeaderComponent implements OnInit {
                 nomMonument: carteA.cartePostale.monuments.nom,
                 base64Photo: i.base64Photo,
                 icon: 'red',
+                owned: i.owned
               }
             );
           }
@@ -233,6 +235,7 @@ export class CardList {
   cardLegendTwo = '';
   editor = '';
   commune = '';
+  owned = false;
 
   constructor(public dialogRef: MatDialogRef<CardList>,
               private _sanitizer: DomSanitizer,
@@ -242,12 +245,14 @@ export class CardList {
 
 
   openSingleCard(carte: VarianteCarte) {
+    console.log(carte);
     this.singleCard = true;
     this.cardUrl = carte.base64Photo;
     this.cardLegend = carte.legende;
     this.cardLegendTwo = carte.legende2;
     this.editor = carte.nomEditeur;
     this.commune = carte.nomCommune;
+    this.owned = carte.owned;
   }
 
   closeSingleCard() {

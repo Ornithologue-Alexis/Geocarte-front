@@ -12,8 +12,8 @@
       </div>
       <div class="legend col-6">
         <div class="row pull-right row-button">
-          <button  *ngIf="this.data.owned" (click)="addUserOnCard()" type="button" class="btn btn-primary">Je possède cette carte! <i class="fa fa-plus"></i> </button>
-          <button  *ngIf="!this.data.owned" (click)="deleteUserOnCard()" type="button" class="btn btn-danger">Je ne possède plus cette carte! <i class="fa fa-minus"></i> </button>
+          <button  *ngIf="!this.data.cartePostal.owned" (click)="addUserOnCard()" type="button" class="btn btn-primary">Je possède cette carte! <i class="fa fa-plus"></i> </button>
+          <button  *ngIf="this.data.cartePostal.owned" (click)="deleteUserOnCard()" type="button" class="btn btn-danger">Je ne possède plus cette carte! <i class="fa fa-minus"></i> </button>
         </div>
         <div class="row avatar-row">
           <img class="avatar rounded-circle" src="../../../assets/img/profil.png"/>

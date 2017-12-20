@@ -143,13 +143,18 @@ export class MapComponent implements OnInit {
 export class CardTemplateComponent {
   constructor(
     public dialogRef: MatDialogRef<CardTemplateComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private _sanitizer: DomSanitizer,  private mapService: MapService) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private _sanitizer: DomSanitizer,  private mapService: MapService) {
+
+
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
+
   }
 
   addUserOnCard(){
+    this.data.cartePostal.owned = true;
     if(StorageTool.getIdUtilisateur() != '' || StorageTool.getIdUtilisateur() != null){
       let datas = this.mapService.addUserOnCard(this.data.cartePostal.varianteCarte.id.cartePostale.id, this.data.cartePostal.varianteCarte.id.id, StorageTool.getIdUtilisateur()).subscribe(data => {
 
@@ -158,10 +163,10 @@ export class CardTemplateComponent {
     }
   }
 
-  deleteUserOncard(){
+  deleteUserOnCard(){
+    this.data.cartePostal.owned = false;
     if(StorageTool.getIdUtilisateur() != '' || StorageTool.getIdUtilisateur() != null){
-      let datas = this.mapService.addUserOnCard(this.data.cartePostal.varianteCarte.id.cartePostale.id, this.data.cartePostal.varianteCarte.id.id, StorageTool.getIdUtilisateur()).subscribe(data => {
-
+      let datas = this.mapService.deleteUserOnCard(this.data.cartePostal.varianteCarte.id.cartePostale.id, this.data.cartePostal.varianteCarte.id.id, StorageTool.getIdUtilisateur()).subscribe(data => {
       }, err => {
       });
     }
