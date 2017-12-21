@@ -1,5 +1,5 @@
 div.header-modal{
-  background-color: #3f51b5;
+  background-color: #DC2531;
   color:white;
   text-align:center;
   padding:10px;
@@ -27,10 +27,10 @@ p.p-connect{
   width: 100%;
 }
 .connect-form i{
-  color: #3f51b5;
+  color: #DC2531;
 }
 .connect-form input{
-  color: #3f51b5;
+  color: #DC2531;
   padding-left: 10px;
 }
 
@@ -38,19 +38,19 @@ p.p-connect{
   margin-bottom: 0px;
 }
 .connect-form .connect-button{
-  background-color: #3f51b5;
+  background-color: #DC2531;
   color:white;
 }
 
 .connect-form .connect-button:hover{
   background-color: white;
-  color: #3f51b5;
-  border-color: #3f51b5;
+  color: #DC2531;
+  border-color: #DC2531;
   text-align:center;
 }
 
 .links-connect a{
-  color: #3f51b5;
+  color: #DC2531;
   cursor: pointer;
 }
 
@@ -58,7 +58,7 @@ p.p-connect{
   padding: 0;
   border: none;
   background: none;
-  color: #3f51b5;
+  color: #DC2531;
   cursor: pointer;
 }
 
@@ -66,7 +66,7 @@ p.p-connect{
   position: absolute;
   top: 1%;
   left: 9%;
-  background-color: rgba(31, 31, 71, 0.8);
+  background-color: rgba(220, 37, 49, 0.8);
   color: white;
   border: none;
   cursor: pointer;
@@ -81,7 +81,7 @@ p.p-connect{
 
 .button-login button:hover{
   background-color: white;
-  color: rgba(31, 31, 71, 0.8);
+  color: rgba(220, 37, 49, 0.8);
   border: none;
   cursor: pointer;
 }

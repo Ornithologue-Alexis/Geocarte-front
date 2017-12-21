@@ -1,5 +1,5 @@
 div.header-modal{
-  background-color: #3f51b5;
+  background-color: #DC2531;
   color:white;
   text-align:center;
   padding:10px;
@@ -32,6 +32,6 @@ img.avatar {
 
 span.author{
   font-weight: bold;
-  color: #3f51b5;
+  color: #DC2531;
   padding-left: 10px;
 }

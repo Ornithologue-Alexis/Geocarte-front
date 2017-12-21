@@ -4,7 +4,7 @@
   position: absolute;
   top: 1%;
   left: 1%;
-  background-color: rgba(31, 31, 71, 0.8);
+  background-color: rgba(220, 37, 49, 0.8);
   color: white;
   border: none;
   cursor: pointer;
@@ -15,7 +15,7 @@
 
 .button-sidenav > button:hover {
   background-color: white;
-  color: rgba(31, 31, 71, 0.8);
+  color: rgba(220, 37, 49, 0.8);
   border: none;
   cursor: pointer;
 }
@@ -28,7 +28,7 @@
 
 /*Style globale et choix de la couleur*/
 .sidenav {
-  background-color: rgba(31, 31, 71, 0.9);
+  background-color: rgba(220, 37, 49, 0.9);
   width: 20%;
   z-index: 20000;
 }
@@ -64,7 +64,7 @@
 }
 
 .sidenav .item-nav button:hover{
-  color: #ffc51f;
+  color: #343433;
 }
 
 .sidenav ul.website-list{
@@ -88,7 +88,7 @@
 }
 
 .sidenav ul.website-list>li>a:hover{
-  color: #ffc51f;
+  color: #343433;
 }
 
 .sidenav div.bottom-nav{
@@ -101,16 +101,16 @@
 }
 .sidenav button.button-close {
   background-color: white;
-  color: rgba(31, 31, 71, 0.8);
+  color: rgba(220, 37, 49, 0.8);
   cursor: pointer;
-  border: solid rgba(31, 31, 71, 0.8) 1px;
+  border: solid rgba(220, 37, 49, 0.8) 1px;
   margin: 20px;
   width: 50px;
   height: 50px;
 }
 
 .sidenav button.button-close:hover {
-  color: #ffc51f;
+  color: #343433;
 }
 
 /*Style pour les pages du menu*/
