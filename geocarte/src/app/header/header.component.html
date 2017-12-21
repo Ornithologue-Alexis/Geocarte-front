@@ -1,4 +1,4 @@
-<nav id="header" class="navbar navbar-inverse container">
+<nav id="header" class="navbar navbar-inverse container" *ngIf="navClosed === true">
   <div *ngIf="filter === false" class="col-12 hide-filter">
     <i (click)="swapFilter()" class="fa fa-caret-down"></i>
   </div>
