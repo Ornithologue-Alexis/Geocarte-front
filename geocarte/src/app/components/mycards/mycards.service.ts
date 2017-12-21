@@ -14,8 +14,7 @@ export class MycardsService {
   }
 
   getUserCartes(id: string): Promise<any> {
-
-    return this.http.get(this.baseUrl + '/carteUtilisateur/' + id)
+    return this.http.get(this.baseUrl + '/varianteCarte/?user_id=' + id)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);

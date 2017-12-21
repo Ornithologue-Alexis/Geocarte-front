@@ -19,7 +19,7 @@ import StorageTool from "../utils/storageTool";
 
 export class HeaderComponent implements OnInit {
 
-
+  @Input() navClosed = false;
   filter = false;
 
   communeCtrl: FormControl;

@@ -5,6 +5,7 @@ import {Observable} from 'rxjs/Observable';
 import {FormControl} from '@angular/forms';
 import {HeaderService} from '../../header/header.service';
 import {MatDialog} from '@angular/material';
+import {DomSanitizer} from "@angular/platform-browser";
 
 
 @Component({
@@ -16,7 +17,7 @@ import {MatDialog} from '@angular/material';
 export class MycardsComponent implements OnInit {
 
   singleCard = false;
-  cardUrl = '';
+  cardBase64 = '';
   cardLegend = '';
   cardLegendTwo = '';
   varianteId: VarianteCarte;
@@ -45,7 +46,7 @@ export class MycardsComponent implements OnInit {
   cartePostales: VarianteCarte[] = [];
   id = StorageTool.getIdUtilisateur();
 
-  constructor(private mycardsService: MycardsService, private headerService: HeaderService, public dialog: MatDialog) {
+  constructor(private mycardsService: MycardsService, private headerService: HeaderService, public dialog: MatDialog, private _sanitizer: DomSanitizer) {
     this.communeCtrl = new FormControl();
     this.editeurCtrl = new FormControl();
     this.legendeCtrl = new FormControl();
@@ -59,9 +60,11 @@ export class MycardsComponent implements OnInit {
   ngOnInit() {
     this.mycardsService.getUserCartes(this.id).then(data => {
       for (let i of data) {
-        let variante = i.id.varianteCarte;
+        let variante = i.varianteCarte;
+        variante.base64Photo = i.base64Photo;
         this.cartePostales.push(variante);
       }
+      console.log(this.cartePostales);
     });
     this.getEditeur();
   }
@@ -69,7 +72,7 @@ export class MycardsComponent implements OnInit {
   openSingleCard(carte: VarianteCarte) {
     this.singleCard = true;
     this.varianteId = carte.id;
-    this.cardUrl = carte.face;
+    this.cardBase64 = carte.base64Photo;
     this.cardLegend = carte.legende;
     this.cardLegendTwo = carte.legende2;
     this.editor = carte.id.cartePostale.editeur.nom;
@@ -92,14 +95,6 @@ export class MycardsComponent implements OnInit {
     }, err => {
       console.log("check if any err "+err);
     });
-  }
-
-  deleteCard(variante: VarianteCarte) {
-    this.mycardsService.deleteCard(+this.id, +variante.cartePostale.id, +variante.id).subscribe(data => {
-          console.log('ça fonctionne du tonnerre. Pardi.');
-        }, err => {
-          console.log("check if any err "+err);
-        });
   }
 
   private getEditeur() {

@@ -1,4 +1,4 @@
-<app-header #appHeader></app-header>
+<app-header #appHeader [navClosed]="!navComponent.sidenav.opened && !navComponent.profil && !navComponent.myCards && !navComponent.signup"></app-header>
 <app-nav #appNav  [cartesPostales]=this.headerComponent.cartesPostales [signup]=this.modalComponent.openSignup [isConnected]=this.modalComponent.isConnected></app-nav>
 <app-modal-component #appModal [isConnected]=this.navComponent.isConnected [navOpened]="!navComponent.sidenav.opened && !navComponent.profil && !navComponent.myCards && !navComponent.signup"></app-modal-component>
 <app-howto *ngIf="!navComponent.sidenav.opened && !navComponent.profil && !navComponent.myCards && !navComponent.signup"></app-howto>

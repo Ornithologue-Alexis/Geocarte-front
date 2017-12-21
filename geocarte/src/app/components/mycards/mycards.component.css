@@ -60,14 +60,19 @@
 
 .cardInfos {
   width : 60%;
+  position : relative;
   display : block;
   margin : 0 auto;
   background-color : white;
 }
 
-.cardInfos .div-button {
-  color : white;
+.cardInfos .return-button {
+  color : black;
   cursor : pointer;
+  position : absolute;
+  top : 1rem;
+  left : 1rem;
+  font-weight: bold;
 }
 
 .singlePostCard {
@@ -80,13 +85,16 @@
 
 .cardInfosText {
   width : 39%;
-  min-height : 25rem;
+  height : 25rem;
   padding-left : 1rem;
-  padding-bottom : 2rem;
   display : inline-block;
   vertical-align:top;
   color : black;
   overflow-y : scroll;
+}
+
+.cardInfosText .last-element {
+  padding-bottom : 2rem;
 }
 
 button.button-close{

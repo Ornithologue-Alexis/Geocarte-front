@@ -1,8 +1,8 @@
 <div class="user_name"><p>Alexis Renault</p></div>
 <div class="diaporama" *ngIf="!singleCard">
   <div class="cartePostale" *ngFor="let carte of cartePostales" (click)="openSingleCard(carte)">
-    <img *ngIf="carte.face !== null" src="../../assets/img/{{carte.face}}"/>
-    <img *ngIf="carte.face === null" src="../../../assets/img/notfound.jpg"/>
+    <img *ngIf="carte.base64Photo === null || carte.base64Photo === ''"  class="image" src="../../../assets/img/notfound.jpg"/>
+    <img *ngIf="carte.base64Photo && carte.base64Photo != ''" class="image" [src]="_sanitizer.bypassSecurityTrustResourceUrl('data:image/PNG;base64,' + carte.base64Photo)" />
     <div class="overlay">
       <div class="text"><i class="fa fa-search" aria-hidden="true"></i></div>
     </div>
@@ -11,13 +11,13 @@
 
 <div class="singleCard" *ngIf="singleCard">
     <div class="cardInfos">
-      <div class="div-button" (click)="closeSingleCard()">
+      <div class="return-button" (click)="closeSingleCard()">
         <span><i class="fa fa-chevron-left"></i></span>
         <span>Retour</span>
       </div>
-      <img class="singlePostCard" src="../../assets/img/{{cardUrl}}"/>
+      <img *ngIf="this.cardBase64 === null || this.cardBase64 === ''"  class="singlePostCard" src="../../../assets/img/notfound.jpg"/>
+      <img *ngIf="this.cardBase64 && this.cardBase64 != ''" class="singlePostCard" [src]="_sanitizer.bypassSecurityTrustResourceUrl('data:image/PNG;base64,' + this.cardBase64)" />
       <div class="cardInfosText">
-
         <div *ngIf="updateCardModule === false">
           <div>
             <p class="title-card">Commune</p>
@@ -31,7 +31,7 @@
             <p class="title-card">Légende</p>
             <p>{{cardLegend}}</p>
           </div>
-          <div>
+          <div class="last-element">
             <button class="btn btn-primary" (click)="openUpdateCard()">Mettre à jour</button>
             <button class="btn btn-primary" (click)="deleteCard(varianteId)">Supprimer</button>
           </div>
@@ -50,7 +50,7 @@
                 <input class="input-update-card" matInput placeholder="Numéro éditeur" [formControl]="newEditorNumber">
               </mat-form-field>
             </div>
-            <div class="col-12 button-submit">
+            <div class="col-12 button-submit last-element">
               <button class="btn btn-primary" (click)="closeNewEditor()">Retour</button>
               <button class="btn btn-primary" (click)="addEditor()">Ajouter</button>
             </div>
@@ -96,7 +96,7 @@
               </mat-form-field>
               <div class="old-input-value">Légende actuel : {{cardLegend}}</div>
             </div>
-            <div class="col-12 button-submit">
+            <div class="col-12 button-submit last-element">
               <button class="btn btn-primary" (click)="updateCard()">Sauvegarder</button>
             </div>
           </form>

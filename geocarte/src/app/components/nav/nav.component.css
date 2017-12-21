@@ -28,7 +28,7 @@
 
 /*Style globale et choix de la couleur*/
 .sidenav {
-  background-color: rgba(31, 31, 71, 0.8);
+  background-color: rgba(31, 31, 71, 0.9);
   width: 20%;
   z-index: 20000;
 }
@@ -145,6 +145,6 @@
   width:100%;
   z-index : 2;
   background-color : black;
-  opacity : 0.8;
+  opacity : 0.87;
   overflow : auto;
 }
