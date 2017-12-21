@@ -1,4 +1,4 @@
-<div class="user_name"><p>Alexis Renault</p></div>
+<div class="user_name"><p>Mes cartes postales</p></div>
 <div class="diaporama" *ngIf="!singleCard">
   <div class="cartePostale" *ngFor="let carte of cartePostales" (click)="openSingleCard(carte)">
     <img *ngIf="carte.base64Photo === null || carte.base64Photo === ''"  class="image" src="../../../assets/img/notfound.jpg"/>

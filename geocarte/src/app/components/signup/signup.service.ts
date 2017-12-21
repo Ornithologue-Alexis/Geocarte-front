@@ -1,4 +1,4 @@
-import {Http} from '@angular/http';
+import {Http, RequestOptions, Headers, Response} from '@angular/http';
 import {Injectable} from '@angular/core';
 
 /**
@@ -13,20 +13,15 @@ export class SignupService {
   constructor(private http: Http) {
   }
 
-
-  /*
-  getUserInfo(): Promise<User> {
-
-    return this.http.get(this.baseUrl + '/utilisateur/')
-      .toPromise()
-      .then(response => response.json() as User)
-      .catch(this.handleError);
+  createUser(email: string, password: string, nom: string) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let changes = {
+      'email': email,
+      'mdp': password,
+      'nom': nom
+    };
+    let body = JSON.stringify(changes);
+    return this.http.post(this.baseUrl + '/utilisateur/', body, options ).map((res: Response) => res.json());
   }
-
-  private handleError(error: any): Promise<any> {
-    console.error('Some error occured', error);
-    return Promise.reject(error.message || error);
-  }
-
-  */
 }

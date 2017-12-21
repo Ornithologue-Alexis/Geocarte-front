@@ -46,6 +46,7 @@ export class ModalComponent implements OnInit {
           this.login = result.login;
           this.password = result.password;
           this.firstconnectService.getUser(this.login, this.password).then(data => {
+            console.log(data);
             this.user = data;
             if (this.user !== null) {
               StorageTool.setIdUtilisateur(this.user.id);
