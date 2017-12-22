@@ -41,7 +41,7 @@
       <div class="menuDiv" *ngIf="myCards || profil || signup">
         <app-mycards *ngIf="myCards"></app-mycards>
         <app-profil *ngIf="profil"></app-profil>
-        <app-signup *ngIf="signup"></app-signup>
+        <app-signup (userCreated)="handleUserCreated($event)" *ngIf="signup"></app-signup>
         <div class="div-button">
           <button class="button-close" type="button" md-button (click)="closeAll()">
             <i class="fa fa-times"></i>

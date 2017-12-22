@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SignupService } from './signup.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ValidationService } from '../../utils/validationService';
@@ -24,6 +24,7 @@ export class SignupComponent implements OnInit {
   name = '';
   password = '';
   newPasswordError = false;
+  @Output() userCreated: EventEmitter<any> = new EventEmitter();;
 
   ngOnInit() {
   }
@@ -47,11 +48,11 @@ export class SignupComponent implements OnInit {
           this.name = newName;
           this.profilForm.controls.email.setValue(newEmail);
           this.profilForm.controls.name.setValue(newName);
+          this.userCreated.emit(true);
         }, err => {
           console.log("check if any err "+err);
         });
       }
     }
-
 
 }

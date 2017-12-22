@@ -61,4 +61,8 @@ export class NavComponent implements OnInit {
     this.signup = false;
   }
 
+  handleUserCreated(event) {
+    this.signup = false;
+  }
+
 }
