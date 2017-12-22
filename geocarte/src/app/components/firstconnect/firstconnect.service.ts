@@ -16,10 +16,7 @@ export class FirstconnectService {
   getUser(login: string, password: string): Promise<User> {
 
     let params: URLSearchParams = new URLSearchParams();
-    params.append('login', login);
-    params.append('pwd', password);
-
-    return this.http.get(this.baseUrl + '/utilisateur/', {search: params})
+    return this.http.get(this.baseUrl + '/utilisateur/?login=' + encodeURIComponent(login) + '&pwd=' + password)
       .toPromise()
       .then(response => response.json() as User[])
       .catch(this.handleError);

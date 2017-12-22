@@ -7,33 +7,36 @@
 
   <div mat-dialog-content>
     <div *ngIf="createNewEditor === true">
-      <p class="title-update-card">Modifier la carte</p>
+
       <form class="form-inline container-fluid">
-        <div class="form-group row">
+        <div class="form-group">
+          <p class="title-update-card">Ajouter un éditeur</p>
+        </div>
+        <div class="form-group">
           <mat-form-field>
             <input class="input-update-card" matInput placeholder="Nom éditeur" [formControl]="newEditorCtrl">
           </mat-form-field>
         </div>
-        <div class="form-group row">
+        <div class="form-group">
           <mat-form-field>
             <input class="input-update-card" matInput placeholder="Numéro éditeur" [formControl]="newEditorNumber">
           </mat-form-field>
         </div>
-        <div class="col-12 button-submit">
-          <button class="btn btn-primary" (click)="closeNewEditor()">Retour</button>
+        <div class="button-submit form-group">
+          <button class="btn btn-primary" style="margin-right : 1rem" (click)="closeNewEditor()">Retour</button>
           <button class="btn btn-primary" (click)="addEditor()">Ajouter</button>
         </div>
       </form>
     </div>
 
-    <div *ngIf="createNewEditor === false">
+    <div class="center-input-material" *ngIf="createNewEditor === false">
       <form class="form-inline container-fluid">
         <div class="form-group">
           <label for="exampleInputFile">Image de la carte</label>
           <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" (change)="handleFileSelect($event)">
           <small id="fileHelp" class="form-text text-muted">Ajouter la légende dans le champ ci-dessous</small>
         </div>
-        <div class="form-group row">
+        <div class="form-group">
           <mat-form-field>
             <input (keypress)="changementCommune($event)" class="input-update-card" matInput placeholder="Commune" [matAutocomplete]="commune" [formControl]="communeCtrl">
             <mat-autocomplete #commune="matAutocomplete" [displayWith]="displayCommune.bind(this)">
@@ -44,7 +47,7 @@
           </mat-form-field>
           <div class="old-input-value">{{cardCommune}}</div>
         </div>
-        <div class="form-group row">
+        <div class="form-group">
           <mat-form-field>
             <input matInput placeholder="Editeur" class="input-update-card" [matAutocomplete]="editeur"
                    [formControl]="editeurCtrl">
@@ -54,15 +57,15 @@
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
-          <button class="btn btn-primary" (click)="openNewEditor()">Créer</button>
+          <button class="btn btn-primary" (click)="openNewEditor()">Créer un nouvel éditeur</button>
           <div class="old-input-value">{{editor}}</div>
         </div>
-        <div class="form-group row">
+        <div class="form-group">
           <mat-form-field>
             <input class="input-update-card" matInput placeholder="Numéro de la carte" [formControl]="codeEditeurCtrl">
           </mat-form-field>
         </div>
-        <div class="form-group row">
+        <div class="form-group">
           <mat-form-field>
             <input (keypress)="changementLegende($event)" class="input-update-card" matInput placeholder="Légende" [matAutocomplete]="legende"
                    [formControl]="legendeCtrl">
@@ -74,7 +77,7 @@
           </mat-form-field>
           <div class="old-input-value">{{cardLegend}}</div>
         </div>
-        <div class="col-12 button-submit">
+        <div class="button-submit form-group">
           <button class="btn btn-primary" (click)="addCard()">Sauvegarder</button>
         </div>
       </form>
