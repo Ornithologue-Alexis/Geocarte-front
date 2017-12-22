@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
       .queryParams
       .subscribe(params => {
         this.token = params['activation'];
+        if(this.token === undefined) {}
         this.appService.activateUser(this.token).subscribe(data => {
           console.log('ACTIVATE : '+data);
         }, err => {
