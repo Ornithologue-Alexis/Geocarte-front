@@ -6,22 +6,19 @@ import {Injectable} from '@angular/core';
  */
 
 @Injectable()
-export class SignupService {
+export class AppService {
 
   baseUrl = 'http://localhost:8080/geocarte/api';
 
   constructor(private http: Http) {
   }
 
-  createUser(email: string, password: string, nom: string) {
+  activateUser(token: string) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let changes = {
-      'email': email,
-      'mdp': password,
-      'nom': nom
     };
     let body = JSON.stringify(changes);
-    return this.http.post(this.baseUrl + '/inscription/', body, options ).map((res: Response) => res.json());
+    return this.http.post(this.baseUrl + '/activation/' + token, body, options ).map((res: Response) => res.json());
   }
 }

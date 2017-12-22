@@ -18,6 +18,8 @@ import {HowtoComponent, HowToTemplateComponent} from './components/howto/howto.c
 import {CardList, HeaderComponent} from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { AppRoutingModule } from './app-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -55,7 +57,8 @@ import { HttpModule } from '@angular/http';
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCAZKYezUJLxkFdkaH1pxNqJeAX8OV5Ej0	'
-    })
+    }),
+    AppRoutingModule
   ],
   entryComponents: [ModalTemplateComponent, CardTemplateComponent, HowToTemplateComponent, CardAddTemplateComponent, CardList],
   providers: [HttpClientModule, HttpModule],
