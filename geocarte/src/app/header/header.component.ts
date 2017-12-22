@@ -8,7 +8,9 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 import {DomSanitizer, SafeHtml, SafeUrl} from '@angular/platform-browser';
 import 'rxjs/add/observable/of';
 import StorageTool from "../utils/storageTool";
-
+import * as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import {MapService} from "../components/map/map.service";
 
 @Component({
   selector: 'app-header',
@@ -214,6 +216,11 @@ export class HeaderComponent implements OnInit {
         width: '75%',
         height: '75%'
       });
+      dialogRef.afterClosed().subscribe(result => {
+        if(result != undefined){
+          this.cartesPostales = result;
+        }
+      });
     });
   }
 
@@ -223,11 +230,12 @@ export class HeaderComponent implements OnInit {
 @Component({
   selector: 'app-modal-template',
   templateUrl: './cardlist.modal.template.html',
-  styleUrls: ['./cardlist.modal.template.css']
+  styleUrls: ['./cardlist.modal.template.css'],
+  providers: [MapService],
 })
 export class CardList {
 
-  cartesPostales: CartePostale[];
+  cartesPostales: any[];
   imgSrc: string;
   singleCard = false;
   cardUrl = '';
@@ -236,23 +244,29 @@ export class CardList {
   editor = '';
   commune = '';
   owned = false;
+  idCarte;
+  idVariante;
+  lastCardCliqued;
+  operateurId = StorageTool.getIdUtilisateur();
 
   constructor(public dialogRef: MatDialogRef<CardList>,
               private _sanitizer: DomSanitizer,
-              @Inject(MAT_DIALOG_DATA) public data: any) {
+              @Inject(MAT_DIALOG_DATA) public data: any,  private mapService: MapService) {
+    pdfMake.vfs = pdfFonts.pdfMake.vfs;
     this.cartesPostales = data.cartesPostales;
   }
 
 
-  openSingleCard(carte: VarianteCarte) {
-    console.log(carte);
+  openSingleCard(carte: any) {
     this.singleCard = true;
+    this.lastCardCliqued = carte;
     this.cardUrl = carte.base64Photo;
     this.cardLegend = carte.legende;
     this.cardLegendTwo = carte.legende2;
     this.editor = carte.nomEditeur;
     this.commune = carte.nomCommune;
     this.owned = carte.owned;
+    this.idCarte = carte.idCarte;
   }
 
   closeSingleCard() {
@@ -262,6 +276,37 @@ export class CardList {
   onNoClick(): void {
     this.dialogRef.close();
     this.cartesPostales = null;
+  }
+  addUserOnCard(){
+    this.owned = true;
+    this.cartesPostales.find(x => x.idCarte == this.lastCardCliqued.idCarte).owned = true;
+    this.cartesPostales.find(x => x.idCarte == this.lastCardCliqued.idCarte).icon = 'blue';
+    if (this.operateurId != '' || this.operateurId != null) {
+      let datas = this.mapService.addUserOnCard(this.lastCardCliqued.idCarte, this.lastCardCliqued.id, this.operateurId).subscribe(data => {
+      }, err => {
+      });
+    }
+  }
+  deleteUserOnCard() {
+    this.owned = false;
+    this.cartesPostales.find(x => x.idCarte == this.lastCardCliqued.idCarte).owned = false;
+    this.cartesPostales.find(x => x.idCarte == this.lastCardCliqued.idCarte).icon = 'red';
+    if (this.operateurId != '' || this.operateurId != null) {
+      let datas = this.mapService.deleteUserOnCard(this.lastCardCliqued.idCarte, this.lastCardCliqued.id, this.operateurId).subscribe(data => {
+      }, err => {
+      });
+    }
+  }
+
+  downloadpdf(){
+    let docDefinition = { content : "" };
+
+    for(let i of this.cartesPostales){
+      console.log(i);
+      docDefinition.content += 'commune=' + i.nomCommune + ', ' + 'editeur=' + i.nomEditeur + ',' + 'nocarte' + i.idCarte + '\n';
+
+    }
+    pdfMake.createPdf(docDefinition).download();
   }
 }
 

@@ -12,8 +12,8 @@
       </div>
       <div class="legend col-6">
         <div class="row pull-right row-button">
-          <button  *ngIf="!this.data.cartePostal.owned" (click)="addUserOnCard()" type="button" class="btn btn-primary">Je possède cette carte! <i class="fa fa-plus"></i> </button>
-          <button  *ngIf="this.data.cartePostal.owned" (click)="deleteUserOnCard()" type="button" class="btn btn-danger">Je ne possède plus cette carte! <i class="fa fa-minus"></i> </button>
+          <button  *ngIf="!this.data.cartePostal.owned" [mat-dialog-close]="data.cartePostales" (click)="addUserOnCard()" type="button" class="btn btn-primary">Je possède cette carte! <i class="fa fa-plus"></i> </button>
+          <button  *ngIf="this.data.cartePostal.owned" [mat-dialog-close]="data.cartePostales" (click)="deleteUserOnCard()" type="button" class="btn btn-danger">Je ne possède plus cette carte! <i class="fa fa-minus"></i> </button>
         </div>
         <div class="row avatar-row">
           <img class="avatar rounded-circle" src="../../../assets/img/profil.png"/>
@@ -21,11 +21,13 @@
         </div>
         <div class="card">
           <div class="card-header">
-            {{this.data.cartePostal.varianteCarte.id.cartePostale.commune.nom}}
+            <p><strong>N°:</strong> {{this.data.cartePostal.varianteCarte.id.cartePostale.id}}</p>
+            <p><strong>Commune:</strong> {{this.data.cartePostal.varianteCarte.id.cartePostale.commune.nom}}</p>
+            <p><strong>Monument:</strong> {{this.data.cartePostal.varianteCarte.id.cartePostale.nomMonument}}</p>
           </div>
           <div class="card-body">
             <blockquote class="blockquote mb-0">
-              <p>{{this.data.cartePostal.varianteCarte.legende}}</p>
+              <p>Légende: "{{this.data.cartePostal.varianteCarte.legende}}"</p>
             </blockquote>
           </div>
         </div>

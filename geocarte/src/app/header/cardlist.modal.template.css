@@ -133,3 +133,10 @@ span.author{
 .row-button{
   margin-right: 10px;
 }
+
+.pdf-export{
+  color: #DC2531;
+  font-size: 20px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}

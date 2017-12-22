@@ -44,46 +44,46 @@ export class MapComponent implements OnInit {
     let datas = this.mapService.getCartePostale(this.operateurId).then(data => {
       for(let i of data){
         let carteA = i.varianteCarte.id.cartePostale;
-          if(i.owned){
-            this.cartesPostales.push({
-                id: i.varianteCarte.id.id,
-                idCarte: carteA.id,
-                lat: carteA.latitude,
-                lng: carteA.longitude,
-                nomCommune: carteA.commune.nom,
-                nomEditeur: carteA.editeur.nom,
-                legende: carteA.legende,
-                nomMonument: carteA.monuments.nom,
-                icon: 'blue',
-                owned: i.owned
-              }
-            );
-          }else{
-            this.cartesPostales.push({
-                id: i.varianteCarte.id.id,
-                idCarte: carteA.id,
-                lat: carteA.latitude,
-                lng: carteA.longitude,
-                nomCommune: carteA.commune.nom,
-                nomEditeur: carteA.editeur.nom,
-                legende: carteA.legende,
-                nomMonument: carteA.monuments.nom,
-                icon: 'red',
-                owned: i.owned
-              }
-            );
-          }
+        if(i.owned){
+          this.cartesPostales.push({
+              id: i.varianteCarte.id.id,
+              idCarte: carteA.id,
+              lat: carteA.latitude,
+              lng: carteA.longitude,
+              nomCommune: carteA.commune.nom,
+              nomEditeur: carteA.editeur.nom,
+              legende: carteA.legende,
+              nomMonument: carteA.monuments.nom,
+              icon: 'blue',
+              owned: i.owned
+            }
+          );
+        }else{
+          this.cartesPostales.push({
+              id: i.varianteCarte.id.id,
+              idCarte: carteA.id,
+              lat: carteA.latitude,
+              lng: carteA.longitude,
+              nomCommune: carteA.commune.nom,
+              nomEditeur: carteA.editeur.nom,
+              legende: carteA.legende,
+              nomMonument: carteA.monuments.nom,
+              icon: 'red',
+              owned: i.owned
+            }
+          );
+        }
       }
     });
   }
 
   getCarteById(idVariante:number, idCarte){
     let datas = this.mapService.getCarteById(idVariante, idCarte).then(data => {
-        Object.assign(this.lastCardCliqued, {
-          id: data.id.id,
-          cartePostale: data.cartePostale,
-          legende: data.legende
-        });
+      Object.assign(this.lastCardCliqued, {
+        id: data.id.id,
+        cartePostale: data.cartePostale,
+        legende: data.legende
+      });
     })
 
   }
@@ -103,14 +103,24 @@ export class MapComponent implements OnInit {
     let card: VarianteCarte;
     let datas = this.mapService.getCarteById(idVariante, idCarte).then(data => {
       data.owned = owned;
-      const dialogRef = this.dialog.open(CardTemplateComponent, {
-        data: { cartePostal : data},
+      const dialogOpen = this.dialog.open(CardTemplateComponent, {
+
+        data: { cartePostal : data, allCards: this.cartesPostales},
         panelClass: 'myapp-no-padding-dialog',
         width: '75%',
         height: '50%'
       });
+
+      dialogOpen.afterClosed().subscribe(result => {
+        if(result != undefined){
+          this.cartesPostales = result;
+        }
+      });
+
     });
   }
+
+
 
   mapDoubleClicked($event) {
     this.getGeoLocation($event.coords.lat, $event.coords.lng);
@@ -149,9 +159,6 @@ export class CardTemplateComponent {
   constructor(
     public dialogRef: MatDialogRef<CardTemplateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private _sanitizer: DomSanitizer,  private mapService: MapService) {
-    // console.log(this.data);
-
-
   }
 
   onNoClick(): void {
@@ -160,24 +167,24 @@ export class CardTemplateComponent {
   }
 
   addUserOnCard(){
-    this.data.cartePostal.owned = true;
+    this.data.allCards.find(x => x.idCarte == this.data.cartePostal.varianteCarte.id.cartePostale.id).owned = true;
+    this.data.allCards.find(x => x.idCarte == this.data.cartePostal.varianteCarte.id.cartePostale.id).icon = 'blue';
     if(StorageTool.getIdUtilisateur() != '' || StorageTool.getIdUtilisateur() != null){
       let datas = this.mapService.addUserOnCard(this.data.cartePostal.varianteCarte.id.cartePostale.id, this.data.cartePostal.varianteCarte.id.id, StorageTool.getIdUtilisateur()).subscribe(data => {
-
       }, err => {
       });
     }
   }
 
-  deleteUserOnCard(){
-    this.data.cartePostal.owned = false;
-    if(StorageTool.getIdUtilisateur() != '' || StorageTool.getIdUtilisateur() != null){
+  deleteUserOnCard() {
+    this.data.allCards.find(x => x.idCarte == this.data.cartePostal.varianteCarte.id.cartePostale.id).owned = false;
+    this.data.allCards.find(x => x.idCarte == this.data.cartePostal.varianteCarte.id.cartePostale.id).icon = 'red';
+    if (StorageTool.getIdUtilisateur() != '' || StorageTool.getIdUtilisateur() != null) {
       let datas = this.mapService.deleteUserOnCard(this.data.cartePostal.varianteCarte.id.cartePostale.id, this.data.cartePostal.varianteCarte.id.id, StorageTool.getIdUtilisateur()).subscribe(data => {
       }, err => {
       });
     }
   }
-
 }
 
 @Component({
@@ -216,17 +223,15 @@ export class CardAddTemplateComponent implements OnInit {
     public dialogRef: MatDialogRef<CardTemplateComponent>,
     private mapService: MapService, private mycardsService: MycardsService, private headerService: HeaderService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-      this.communeCtrl = new FormControl();
-      this.editeurCtrl = new FormControl();
-      this.legendeCtrl = new FormControl();
-      this.codeEditeurCtrl = new FormControl();
-      this.imageCtrl = new FormControl();
-      this.newEditorCtrl = new FormControl();
-      this.newEditorNumber = new FormControl();
-      this.filteredEditeur = this.editeurCtrl.valueChanges
-        .startWith(null)
-        .map(editeur => editeur ? this.filterEditeur(editeur) : this.editeurs.slice());
-    }
+    this.communeCtrl = new FormControl();
+    this.editeurCtrl = new FormControl();
+    this.legendeCtrl = new FormControl();
+    this.codeEditeurCtrl = new FormControl();
+    this.imageCtrl = new FormControl();
+    this.filteredEditeur = this.editeurCtrl.valueChanges
+      .startWith(null)
+      .map(editeur => editeur ? this.filterEditeur(editeur) : this.editeurs.slice());
+  }
 
   ngOnInit() {
     this.getEditeur();
@@ -289,7 +294,6 @@ export class CardAddTemplateComponent implements OnInit {
   }
 
   changementLegende(event) {
-    console.log(event);
     if (event.target.value.length >= 1) {
       this.headerService.getLegendesWithBeginning(event.target.value).then(data => {
         this.legendes = data;
@@ -322,7 +326,6 @@ export class CardAddTemplateComponent implements OnInit {
   }
 
   openNewEditor() {
-    console.log(this.createNewEditor = true);
     this.createNewEditor = true;
   }
 
