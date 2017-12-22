@@ -228,6 +228,8 @@ export class CardAddTemplateComponent implements OnInit {
     this.legendeCtrl = new FormControl();
     this.codeEditeurCtrl = new FormControl();
     this.imageCtrl = new FormControl();
+    this.newEditorCtrl = new FormControl();
+    this.newEditorNumber = new FormControl();
     this.filteredEditeur = this.editeurCtrl.valueChanges
       .startWith(null)
       .map(editeur => editeur ? this.filterEditeur(editeur) : this.editeurs.slice());
